@@ -1,7 +1,8 @@
 ---
 title: Mysql 全部语法总结
 date: 2019-08-08 18:05:01
-tags: Mysql 
+tags: 
+    - Mysql 
 ---
 
 ## 数据库的相关概念 ##

@@ -1,7 +1,9 @@
 ---
 title: Java常用类(四)之System类、Math类、BigInteger与BigDecimal
 date: 2019-08-13 00:15:11 
-tags: Java,常用类
+tags: 
+    - Java 
+    - 常用类
 ---
 ### System类 ###
 

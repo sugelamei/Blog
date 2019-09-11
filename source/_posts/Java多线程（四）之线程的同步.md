@@ -1,7 +1,9 @@
 ---
 title: Java多线程（四）之线程的同步 
 date: 2019-08-09 21:53:48 
-tags: Java,多线程
+tags: 
+    - Java 
+    - 多线程
 ---
 
 1.Synchronized的使用方法

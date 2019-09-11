@@ -1,7 +1,9 @@
 ---
 title: Java多线程（五）之线程的通信 
 date: 2019-08-09 22:46:38 
-tags: Java,多线程
+tags: 
+    - Java 
+    - 多线程
 ---
 
 1.wait() 与 notify() 和 notifyAll()

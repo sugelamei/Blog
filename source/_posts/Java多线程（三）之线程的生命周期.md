@@ -1,7 +1,9 @@
 ---
 title: Java多线程（三）之线程的生命周期 
 date: 2019-08-09 21:41:59 
-tags: Java,多线程
+tags:
+    - Java 
+    - 多线程
 ---
 
 1.JDK中用Thread.State类定义了线程的几种状态
