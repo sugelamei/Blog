@@ -24,7 +24,7 @@ tags:
 		④使用grow( minCapacity)来实现容量扩展为原来的1.5倍（oldCapacity + (oldCapacity >> 1)）	
         ⑤使用Arrays.copyOf(elementData, newCapacity)将老数组的元素拷贝到新数组中。
 		
-		
+<!--more-->>>
 （3）ArrayList插入、删除、查询元素的时间复杂度各是多少？
     
         ①get(int index) 时间复杂度为O(1)
