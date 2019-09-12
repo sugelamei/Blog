@@ -3,7 +3,7 @@ title: CentOS6.8安装Docker
 date: 2019-08-08 18:05:01
 tags: 
     - Docker 
-    - CentOS6.8
+    - CentOS
 ---
 
 

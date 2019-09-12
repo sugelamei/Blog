@@ -3,7 +3,7 @@ title: Docker 的简单介绍
 date: 2019-08-08 18:05:01
 tags: 
     - Docker
-    - Centos
+    - CentOS
 ---
 
 

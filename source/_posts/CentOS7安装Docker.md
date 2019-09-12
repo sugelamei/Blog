@@ -3,7 +3,7 @@ title: CentOS7安装Docker
 date: 2019-08-09 10:05:01
 tags: 
     - Docker
-    - CentOS7
+    - CentOS
 ---
 
 
