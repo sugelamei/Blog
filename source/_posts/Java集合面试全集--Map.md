@@ -15,7 +15,12 @@ tags:
 
 （2）怎么实现一个散列表？
 
-（3）java中HashMap实现方式的演进？
+       
+ https://www.cnblogs.com/absfree/p/5508570.html
+
+（3）java中HashMap实现方式？
+ 
+     数组 +链表 +红黑树
 
 （4）HashMap的容量有什么特点？
 
@@ -48,6 +53,9 @@ tags:
 
 （8）HashMap是怎么进行缩容的？
 
+      使用HashMap时还需要注意一点，它不会动态地进行缩容，也就是说，你不应该保留一个已经删除过大量Entry的HashMap（如果不打算继续添加元素的话），此时它的buckets数组经过多次扩容已经变得非常大了，这会占用非常多的无用内存，这样做的好处是不用多次对数组进行扩容或缩容操作。不过一般也不会出现这种情况，如果遇见了，请毫不犹豫地丢掉它，或者把数据转移到一个新的HashMap。
+
+
 （9）HashMap插入、删除、查询元素的时间复杂度各是多少？
 
     查找：时间复杂度为O(1)
@@ -55,6 +63,8 @@ tags:
     删除:时间复杂度为O(1)-O(n)
 
 （10）HashMap中的红黑树实现部分可以用其它数据结构代替吗？
+
+       不能，因为在这个情况下，只有红黑书在极端的情况下能保持极好的性能，将时间复杂度保持在O(logN)。
 
 （11）LinkedHashMap是怎么实现的？
        
@@ -133,51 +143,200 @@ tags:
 
 （20）TreeMap就有序的吗？怎么个有序法？
      	
-		按key的大小排序有两种方式，一种是key实现Comparable接口，一种方式通过构造方法传入比较器。
+	按key的大小排序有两种方式，一种是key实现Comparable接口，一种方式通过构造方法传入比较器comparator。
 
 （21）TreeMap是否需要扩容？
 
+      不需要扩容
+
 （22）什么是左旋？什么是右旋？
+        
+       左旋，就是以某个节点为支点向左旋转。
+ 
+       右旋，就是以某个节点为支点向右旋转。
+       
+       具体如何旋转 可以参考[https://www.cnblogs.com/yangecnu/p/Introduce-Red-Black-Tree.html](https://www.cnblogs.com/yangecnu/p/Introduce-Red-Black-Tree.html)
+
 
 （23）红黑树怎么插入元素？
 
+      具体查看以下链接：
+      
+       https://blog.csdn.net/goodluckwhh/article/details/11804733
+
 （24）红黑树怎么删除元素？
+   
+      具体查看以下链接：
+
+       https://blog.csdn.net/goodluckwhh/article/details/12718233
 
 （25）为什么要进行平衡？
+  
+       平衡是为了保证查询、删除、查询的时间复杂度问题，为了提高查询、删除、查询的速度
+        
 
 （26）如何实现红黑树的遍历？
 
+        ①前序遍历，先遍历我，再遍历我的左子节点，最后遍历我的右子节点；
+
+		②中序遍历，先遍历我的左子节点，再遍历我，最后遍历我的右子节点；
+		
+		③后序遍历，先遍历我的左子节点，再遍历我的右子节点，最后遍历我；
+
 （27）TreeMap中是怎么遍历的？
+
+        @Override
+		public void forEach(BiConsumer<? super K, ? super V> action) {
+		    Objects.requireNonNull(action);
+		    // 遍历前的修改次数
+		    int expectedModCount = modCount;
+		    // 执行遍历，先获取第一个元素的位置，再循环遍历后继节点
+		    for (Entry<K, V> e = getFirstEntry(); e != null; e = successor(e)) {
+		        // 执行动作
+		        action.accept(e.key, e.value);
+		
+		        // 如果发现修改次数变了，则抛出异常
+		        if (expectedModCount != modCount) {
+		            throw new ConcurrentModificationException();
+		        }
+		    }
+		}
+
+
+
+  ① 寻找第一个节点，从根节点开始找最左边的节点，即最小的元素。
+
+		final Entry<K,V> getFirstEntry() {
+		        Entry<K,V> p = root;
+		        // 从根节点开始找最左边的节点，即最小的元素
+		        if (p != null)
+		            while (p.left != null)
+		                p = p.left;
+		        return p;
+		    }
+
+      
+
+
+②循环遍历后继节点
+
+		static <K,V> TreeMap.Entry<K,V> successor(Entry<K,V> t) {
+		    if (t == null)
+		        // 如果当前节点为空，返回空
+		        return null;
+		    else if (t.right != null) {
+		        // 如果当前节点有右子树，取右子树中最小的节点
+		        Entry<K,V> p = t.right;
+		        while (p.left != null)
+		            p = p.left;
+		        return p;
+		    } else {
+		        // 如果当前节点没有右子树
+		        // 如果当前节点是父节点的左子节点，直接返回父节点
+		        // 如果当前节点是父节点的右子节点，一直往上找，直到找到一个祖先节点是其父节点的左子节点为止，返回这个祖先节点的父节点
+		        Entry<K,V> p = t.parent;
+		        Entry<K,V> ch = t;
+		        while (p != null && ch == p.right) {
+		            ch = p;
+		            p = p.parent;
+		        }
+		        return p;
+		    }
+		}
+
 
 （28）TreeMap插入、删除、查询元素的时间复杂度各是多少？
 
+          插入、删除、查询的时间的复杂度均为O(lgN)
+         
+
 （29）HashMap在多线程环境中什么时候会出现问题？
+         
+     会出现线程安全问题 
 
 （30）ConcurrentHashMap的存储结构？
+   
+     数组+ 链表 + 红黑书
 
 （31）ConcurrentHashMap是怎么保证并发安全的？
+         
+       自旋 +CAS +Synchronized + 分段锁  
 
 （32）ConcurrentHashMap是怎么扩容的？
 
+       采用多线程扩容。整个扩容过程，通过CAS设置sizeCtl，transferIndex等变量协调多个线程进行并发扩容。
+       多线程无锁扩容的关键就是通过CAS设置sizeCtl与transferIndex变量，协调多个线程对table数组中的node进行迁移。
+
+         
+
 （33）ConcurrentHashMap的size()方法的实现知多少？
+        
+     获取元素个数是把所有的段（包括baseCount和CounterCell）相加起来得到的
+        
+      
 
 （34）ConcurrentHashMap是强一致性的吗？
+        
+      查询操作是不会加锁的，所以ConcurrentHashMap不是强一致性的
 
 （35）ConcurrentHashMap不能解决什么问题？
 
+		       private static final Map<Integer, Integer> map = new ConcurrentHashMap<>();
+		
+		public void unsafeUpdate(Integer key, Integer value) {
+		    Integer oldValue = map.get(key);
+		    if (oldValue == null) {
+		        map.put(key, value);
+		    }
+		}
+
+       多线程同时访问时存在问题值被覆盖的问题
+
 （36）ConcurrentHashMap中哪些地方运用到分段锁的思想？
+    
+         插入（put）  删除（remove）  
 
 （37）什么是伪共享？怎么避免伪共享？
 
+     伪共享：计算机系统中为了解决主内存与CPU运行速度的差距，在CPU与主内存之间添加了一级或者多级高速缓冲存储器（Cache），这个Cache一般是集成到CPU内部的，所以也叫 CPU Cache。
+  
+     避免伪共享的方式：
+
+     JDK8之前一般都是通过字节填充的方式来避免，也就是创建一个变量的时候使用填充字段填充该变量所在的缓存行，这样就避免了多个变量存在同一个缓存行
+
+       在JDK8中提供了一个sun.misc.Contended注解，用来解决伪共享问题
+
 （38）什么是跳表？
 
-（40）ConcurrentSkipList是有序的吗？
+      跳表是一个随机化的数据结构，实质就是一种可以进行二分查找的有序链表。
+      
+      跳表在原有的有序链表上面增加了多级索引，通过索引来实现快速查找。
 
-（41）ConcurrentSkipList是如何保证线程安全的？
+      跳表不仅能提高搜索性能，同时也可以提高插入和删除操作的性能
 
-（42）ConcurrentSkipList插入、删除、查询元素的时间复杂度各是多少？
+（40）ConcurrentSkipListMap是有序的吗？
 
-（43）ConcurrentSkipList的索引具有什么特性？
+        是有序的
+
+
+（41）ConcurrentSkipListMap是如何保证线程安全的？
+
+            它利用了volatile关键字、Unsafe的CAS方法、自旋锁等并发技巧实现了无锁算法
+
+
+（42）ConcurrentSkipListMap插入、删除、查询元素的时间复杂度各是多少？
+
+      跳表查询、插入、删除的时间复杂度为O(lgN)
+
+（43）ConcurrentSkipListMap的索引具有什么特性？
+
+          每个节点按照一定的概率生成了多级索引，下层的索引必定包含上层索引
 
 （44）为什么Redis选择使用跳表而不是红黑树来实现有序集合？
+
+		在跳表中，要查找区间的元素，我们只要定位到两个区间端点在最低层级的位置，然后按顺序遍历元素就可以了，非常高效。
+		
+		而红黑树只能定位到端点后，再从首位置开始每次都要查找后继节点，相对来说是比较耗时的。
+		
+		此外，跳表实现起来很容易且易读，红黑树实现起来相对困难，所以Redis选择使用跳表来实现有序集合。
 
