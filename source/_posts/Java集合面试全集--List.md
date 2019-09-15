@@ -157,3 +157,29 @@ tags:
        Vector 是线程安全的动态数组，Vector 与 ArrayList 基本是一致的，唯一不同的是 Vector 是线程安全的，会在可能出现线程安全的方法前面加上 synchronized 关键字导致性能低下；
 
         Stack 是继承自 Vector 基于动态数组实现的线程安全栈，其实现也借助了Vector的数据结构和方法。简单的说就是一个push操作：往数组中最后添加元素，pop操作：取出最后一个元素，达到先入后出的原则
+
+（20）如何比较两个List中的元素是否完全相等？
+   
+     只要先比较两个List的元素个数是否相等，再作一次两层循环就可以，设定一个标记数组，标记某个位置的元素是否找到过
+      
+     private static <T> boolean eq(List<T> list1, List<T> list2) {
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+
+        // 标记某个元素是否找到过，防止重复
+        boolean matched[] = new boolean[list2.size()];
+
+        outer: for (T t : list1) {
+            for (int i = 0; i < list2.size(); i++) {
+                // i这个位置没找到过才比较大小
+                if (!matched[i] && list2.get(i).equals(t)) {
+                    matched[i] = true;
+                    continue outer;
+                }
+            }
+            return false;
+        }
+
+        return true;
+    }
