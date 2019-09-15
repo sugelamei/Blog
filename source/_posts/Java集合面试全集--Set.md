@@ -23,7 +23,7 @@ tags:
 
         HashSet中允许有一个null元素，因为HashMap允许key为null；
        
-
+<!--more-->>>
 （4）Set是否有get()方法？
    
        HashSet是没有get()方法的；
