@@ -1,6 +1,6 @@
 ---
 title: Java与NIO（二）Java NIO Channel
-date: 2019-09-16 22:37:57 
+date: 2019-09-16 23:08:11 
 tags: 
     - Java 
     - NIO
@@ -17,8 +17,8 @@ Java NIO的通道类似流，但又有些不同：
 
 正如上面所说，从通道读取数据到缓冲区，从缓冲区写入数据到通道。如下图所示：
 
-![](/image/Java与NIO（二）Java NIO Channel/01.png)
 
+![](/image/Java与NIO/channel和buffer.png)
 
 ### Channel的实现 ###
 

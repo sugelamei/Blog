@@ -1,6 +1,6 @@
 ---
 title: Java与NIO（一）Java NIO概述
-date: 2019-08-09 20:45:57 
+date: 2019-09-16 22:08:03  
 tags: 
     - Java 
     - NIO
@@ -15,12 +15,14 @@ Java NIO 由以下几个核心部分组成：
 - Selectors
 
 虽然Java NIO 中除此之外还有很多类和组件，但在我看来，Channel，Buffer 和 Selector 构成了核心的API。其它组件，如Pipe和FileLock，只不过是与三个核心组件共同使用的工具类。因此，在概述中我将集中在这三个组件上。其它组件会在单独的章节中讲到。
+
 <!--more-->>>
+
 ### Channel 和 Buffer ###
 
 基本上，所有的 IO 在NIO 中都从一个Channel 开始。Channel 有点象流。 数据可以从Channel读到Buffer中，也可以从Buffer 写到Channel中。这里有个图示：
 
-![](/image/Java与NIO（一）Java NIO概述/01.png)
+![](/image/Java与NIO/概述1.png)
 
 
 Channel和Buffer有好几种类型。下面是JAVA NIO中的一些主要Channel的实现：
@@ -55,6 +57,6 @@ Selector允许单线程处理多个 Channel。如果你的应用打开了多个�
 
 这是在一个单线程中使用一个Selector处理3个Channel的图示：
 
-![](/image/Java与NIO（一）Java NIO概述/02.png)
+![](/image/Java与NIO/概述2.png)
 
 要使用Selector，得向Selector注册Channel，然后调用它的select()方法。这个方法会一直阻塞到某个注册的通道有事件就绪。一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等。
