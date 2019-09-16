@@ -17,6 +17,7 @@ Java NIO的通道类似流，但又有些不同：
 
 正如上面所说，从通道读取数据到缓冲区，从缓冲区写入数据到通道。如下图所示：
 
+<!--more-->>>
 
 ![](/image/Java与NIO/channel和buffer.png)
 
