@@ -40,30 +40,41 @@ ServerSocketChannel可以监听新进来的TCP连接，像Web服务器那样。�
 
 ### 基本的 Channel 示例 ###
 
-下面是一个使用FileChannel读取数据到Buffer中的示例：
+下面是一个使用FileChannel读取数据到Buffer中然后把Buffer中的数据写入FileChannel的示例：
 
 
-    RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");
-    FileChannel inChannel = aFile.getChannel();
-    
-    ByteBuffer buf = ByteBuffer.allocate(48);
-    
-    int bytesRead = inChannel.read(buf);
-    while (bytesRead != -1) {
-      System.out.println("Read " + bytesRead);
-      buf.flip();
-    
-      while(buf.hasRemaining()){
-    System.out.print((char) buf.get());
-      }
-    
-      buf.clear();
-      bytesRead = inChannel.read(buf);
+        //创建文件输入流
+        FileInputStream in = new FileInputStream(new File("a.txt"));
+        //创建文件输出流
+        FileOutputStream out   = new FileOutputStream(new File("b.txt"));
+        //创建缓冲区
+        ByteBuffer buffer  = ByteBuffer.allocate(24);
+        //获得输入channel
+        FileChannel inChannel  = in.getChannel();
+        //获取输出channel
+        FileChannel outChannel = out.getChannel();
+
+
+        //判断是否读到最后 使用inChannel读取a.txt中的数据写入buffer中
+        while ( inChannel.read(buffer)!=-1){
+            //将Buffer从写模式切换到读模式（必须调用这个方法）
+            buffer.flip();
+            //使用outChannel 读取buffer中的数据写入b.txt中
+            outChannel.write(buffer);
+            //清空buffer
+            buffer.clear();
+
+        }
+        //使用后记得关闭 不关闭造成资源浪费
+        out.close();
+        in.close();
+        inChannel.close();
+        outChannel.close();
+
     }
-    aFile.close();
 
 
-注意 buf.flip() 的调用，首先读取数据到Buffer，然后反转Buffer,接着再从Buffer中读取数据。下一节会深入讲解Buffer的更多细节。
+注意  buffer.flip() 的调用，首先读取数据到Buffer，然后反转Buffer,接着再从Buffer中读取数据。下一节会深入讲解Buffer的更多细节。
 
 
 
