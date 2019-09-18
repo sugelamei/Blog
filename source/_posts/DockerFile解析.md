@@ -21,9 +21,9 @@ Dockerfile是用来构建Docker镜像的构建文件，是由一系列命令和�
 <!--more-->>>
 https://hub.docker.com/_/centos/
 
-![](/image/Docker/docker_hub01.png)
+![](/image/Docker/docker-hub01.png)
 
-![](/image/Docker/docker_hub02.png)
+![](/image/Docker/docker-hub02.png)
 
 
 ### DockerFile构建过程解析 ###
@@ -56,7 +56,7 @@ https://hub.docker.com/_/centos/
 - 
 Dockerfile面向开发，Docker镜像成为交付标准，Docker容器则涉及部署与运维，三者缺一不可，合力充当Docker体系的基石。
 
-![](/image/Docker/docker_file.png)
+![](/image/Docker/docker-file.png)
 
 1. Dockerfile，需要定义一个Dockerfile，Dockerfile定义了进程需要的一切东西。Dockerfile涉及的内容包括执行代码或者是文件、环境变量、依赖包、运行时环境、动态链接库、操作系统的发行版、服务进程和内核进程(当应用进程需要和系统服务和内核进程打交道，这时需要考虑如何设计namespace的权限控制)等等;
  
@@ -80,7 +80,7 @@ CMD			指定一个容器启动时要运行的命令 Dockerfile 中可以有多�
 ENTRYPOINT 	指定一个容器启动时要运行的命令 ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数
 ONBUILD 	当构建一个被继承的Dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild被触发
 
-![](/image/Docker/docker_file01.png)
+![](/image/Docker/docker-file01.png)
 
 
 
@@ -112,7 +112,7 @@ ONBUILD 	当构建一个被继承的Dockerfile时运行命令，父镜像在被�
  
 
 
-![](/image/Docker/docker_file02.png)
+![](/image/Docker/docker-file02.png)
 
 
 
