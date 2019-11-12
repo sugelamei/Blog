@@ -88,6 +88,14 @@
     }) %>
   <% } %>
   
+  <% if (theme.livere){ %>
+  <%- partial('post/livere', {
+        key: post.slug,
+        title: post.title,
+        url: config.url+url_for(post.path)
+    }) %>
+  <% } %>
+  
   <% if (theme.wangyiyun){ %>
   <%- partial('post/wangyiyun', {
       key: post.slug,

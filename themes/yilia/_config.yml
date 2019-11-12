@@ -103,15 +103,16 @@ share_jia: true
 
 #6、配置gitalk
 
-gitalk: 
-  enable: false
-  client_id: '179a43c6633dd2d32893'
-  client_secret: '777e29942a72943447ae3ef2f5992441818809fa'
-  repo: 'sugelamei.github.io'
-  owner: 'sugelamei'
-  admin: 'sugelamei'
-  ctionFreeMode: true 
-
+#gitalk: 
+ # enable: false
+  #client_id: '179a43c6633dd2d32893'
+  #client_secret: '777e29942a72943447ae3ef2f5992441818809fa'
+  #repo: 'sugelamei.github.io'
+  #owner: 'sugelamei'
+  #admin: 'sugelamei'
+  #ctionFreeMode: true 
+#7.来必力
+livere: MTAyMC80NzQ5OC8yMzk5OA
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
