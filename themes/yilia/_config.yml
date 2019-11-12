@@ -90,7 +90,8 @@ share_jia: true
 #changyan_conf: false
 
 #4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的
-#disqus: false
+disqus: true
+  disqus_shortname: Sugelamei
 
 #5、Gitment
 #gitment_owner: ''       #你的 GitHub ID
@@ -112,7 +113,8 @@ share_jia: true
   #admin: 'sugelamei'
   #ctionFreeMode: true 
 #7.来必力
-livere: MTAyMC80NzQ5OC8yMzk5OA
+#livere: false
+    #MTAyMC80NzQ5OC8yMzk5OA
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
