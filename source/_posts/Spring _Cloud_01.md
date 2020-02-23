@@ -494,12 +494,18 @@ private String userServiceUrl;
 
 请大家持续关注公众号：Java橙序猿
 
- ![](/image/common/Java橙序猿.png) 
+ ![](/image/common/superdevops.jpg) 
 
 关注博客：
 
 ```
  http://superdevops.cn
+```
+
+源码地址：
+
+```
+https://github.com/superdevops-cn/spring-cloud-microservice
 ```
 
 ### 888.参考资料
