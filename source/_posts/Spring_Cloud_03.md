@@ -114,11 +114,7 @@ tags:
 
 ```
 
-由于前面已为电影微服务添加了`spring-cloud-starter-netflix-eureka-client`，该依赖已包含`spring-`
-
-`cloud-starter-netflix-ribbon`，也可以不引入此包。
-
-
+由于前面已为电影微服务添加了`spring-cloud-starter-netflix-eureka-client`，该依赖已包含`spring-cloud-starter-netflix-ribbon`，也可以不引入此包。
 
 2.为`RestTemplate`添加`@LoadBalanced`注解。
 
@@ -154,7 +150,7 @@ public class MovieController {
 }
 ```
 
-​    由代码可知，我们将请求的地址改成了http://microservice-provider-user/。`microservice-provider-user`是用户微服务的**虚拟主机名**（`virtualhostname`），当Ribbon和Eureka配合使用时，会自动将虚拟主机名映射成微服务的网络地址。
+​    由代码可知，我们将请求的地址改成了http://microservice-provider-user/。microservice-provider-user是用户微服务的**虚拟主机名**（virtual hostname），当Ribbon和Eureka配合使用时，会自动将虚拟主机名映射成微服务的网络地址。
 
 ### 3.调整消费者
 
@@ -649,6 +645,6 @@ ribbon:
 https://github.com/superdevops-cn/spring-cloud-microservice
 ```
 
-### 888.参考资料：
+### 888.参考资料
 
 [《Spring Cloud 与Docker 微服务架构实战》](https://book.douban.com/subject/30278673/)
