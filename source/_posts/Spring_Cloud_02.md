@@ -28,7 +28,7 @@ tags:
 
 ​       使用服务发现组件后的架构图，如下所示：
 
-  ![](/image/SpringCloud/image-20191117114531311.png" )
+  ![](/image/SpringCloud/image-20191117114531311.png)
 
 
 
@@ -511,7 +511,9 @@ eureka:
 
 ```
 
-2.配置系统的hosts，Windows系统的hosts文件路径是`C:\Windows\System32\drivers\etc\hosts`；Linux及`MacOS`等系统的文件路径是/etc/hosts
+2.配置系统的hosts，Windows系统的hosts文件路径是`C:\Windows\System32\drivers\etc\hosts`；
+
+Linux及`MacOS`等系统的文件路径是/etc/hosts
 
 ```
 127.0.0.1  eureka01
