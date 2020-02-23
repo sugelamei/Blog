@@ -70,7 +70,7 @@ tags:
 
 在分析Eureka的原理之前，先来了解一下Region和Availability Zone，如下图所示
 
-![](/image/SpringCloud/image-20191117114312345.png")
+![](/image/SpringCloud/image-20191117114312345.png)
 
 ​       Region和Availability Zone均是`AWS`的概念。其中，Region表示`AWS`中的地理位置，每个Region都有多个Availability Zone，各个Region之间完全隔离。`AWS`通过这种方式实现了最大的容错和稳定性。
 
@@ -110,85 +110,85 @@ Eureka包含两个组件：`EurekaServer`和`EurekaClient`，它们的作用如�
 
 ### 4.编写Eureka Server 
 
-1. 使用 `Spring Initializr`快速创建`microservice-discovery-eureka`微服务，添加Eureka Server模块`pom.xml`如下：
+1.使用 `Spring Initializr`快速创建`microservice-discovery-eureka`微服务，添加Eureka Server模块`pom.xml`如下：
 
-   ```xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-       <modelVersion>4.0.0</modelVersion>
-       <parent>
-           <groupId>org.springframework.boot</groupId>
-           <artifactId>spring-boot-starter-parent</artifactId>
-           <version>2.1.10.RELEASE</version>
-           <relativePath/> <!-- lookup parent from repository -->
-       </parent>
-       <groupId>com.sugelamei</groupId>
-       <artifactId>microservice-discovery-eureka</artifactId>
-       <version>0.0.1-SNAPSHOT</version>
-       <name>microservice-discovery-eureka</name>
-       <description>Demo project for Spring Boot</description>
-   
-       <properties>
-           <java.version>1.8</java.version>
-           <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
-       </properties>
-   
-       <dependencies>
-           <dependency>
-               <groupId>org.springframework.cloud</groupId>
-               <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-           </dependency>
-   
-           <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-test</artifactId>
-               <scope>test</scope>
-               <exclusions>
-                   <exclusion>
-                       <groupId>org.junit.vintage</groupId>
-                       <artifactId>junit-vintage-engine</artifactId>
-                   </exclusion>
-               </exclusions>
-           </dependency>
-       </dependencies>
-   
-       <dependencyManagement>
-           <dependencies>
-               <dependency>
-                   <groupId>org.springframework.cloud</groupId>
-                   <artifactId>spring-cloud-dependencies</artifactId>
-                   <version>${spring-cloud.version}</version>
-                   <type>pom</type>
-                   <scope>import</scope>
-               </dependency>
-           </dependencies>
-       </dependencyManagement>
-   
-       <build>
-           <plugins>
-               <plugin>
-                   <groupId>org.springframework.boot</groupId>
-                   <artifactId>spring-boot-maven-plugin</artifactId>
-               </plugin>
-           </plugins>
-       </build>
-   
-       <repositories>
-           <repository>
-               <id>spring-milestones</id>
-               <name>Spring Milestones</name>
-               <url>https://repo.spring.io/milestone</url>
-           </repository>
-       </repositories>
-   
-   </project>
-   
-   ```
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.10.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.sugelamei</groupId>
+    <artifactId>microservice-discovery-eureka</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>microservice-discovery-eureka</name>
+    <description>Demo project for Spring Boot</description>
 
-   
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+    </properties>
 
-   2.在启动类上添加`@EnableEurekaServer`注解，声明这是一个`EurekaServer`。
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+
+</project>
+
+```
+
+
+
+2.在启动类上添加`@EnableEurekaServer`注解，声明这是一个`EurekaServer`。
 
 ```java
 @SpringBootApplication
@@ -240,7 +240,7 @@ eureka:
 http://localhost:8761
 ```
 
-![](/image/SpringCloud/image-20191117164630623.png")
+![](/image/SpringCloud/image-20191117164630623.png)
 
   由图可知，Eureka Server的首页展示了很多信息，例如当前实例的系统状态、注册到Eureka Server上的服务实例、常用信息、实例信息等。显然，当前还没有任何微服务实例被注册到Eureka Server上。
 
