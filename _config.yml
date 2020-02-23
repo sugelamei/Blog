@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: sugelamei的博客
+title: Java橙序猿
 subtitle: 世界上永远不缺锦上添花的人,缺的是雪中送炭的人。
 description: 世界上没有难学的技术，只有不去学习的懒人。
 keywords: IO,JVM,JUC,Java,Docker,Github,Hexo
-author: sugelamei
+author: superdevops
 language: en
 timezone: Asia/Shanghai
 
@@ -44,7 +44,7 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-  
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -53,7 +53,7 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -76,7 +76,7 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: yilia
 
-Plugins: 
+Plugins:
        hexo-generator-feed
 
 #Feed Atom
@@ -90,7 +90,7 @@ feed:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:sugelamei/sugelamei.github.io.git
+  repository: git@github.com:superdevops-cn/superdevops-cn.github.io.git
   branch: master
 
 
@@ -114,4 +114,3 @@ jsonContent:
       excerpt: false
       categories: false
       tags: true
-

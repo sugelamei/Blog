@@ -45,17 +45,17 @@ open_in_new: false
 # 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
 
 
-reward_type: 2 
+reward_type: 0
 # 打赏wording
 reward_wording: '谢谢你请我吃糖果'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
-alipay: /img/alipay.png 
+alipay: /img/alipay.png
 # 微信二维码图片地址
 weixin: /img/WeChat.png
 
 # 目录
 # 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录
-toc: 1
+toc: 2
 # 根据自己的习惯来设置，如果你的目录标题习惯有标号，置为true即可隐藏hexo重复的序号；否则置为false
 toc_hide_index: true
 # 目录为空时的提示
@@ -104,14 +104,14 @@ disqus_shortname: Sugelamei
 
 #6、配置gitalk
 
-#gitalk: 
+#gitalk:
  # enable: false
   #client_id: '179a43c6633dd2d32893'
   #client_secret: '777e29942a72943447ae3ef2f5992441818809fa'
   #repo: 'sugelamei.github.io'
   #owner: 'sugelamei'
   #admin: 'sugelamei'
-  #ctionFreeMode: true 
+  #ctionFreeMode: true
 #7.来必力
 #livere: false
     #MTAyMC80NzQ5OC8yMzk5OA
@@ -139,6 +139,6 @@ smart_menu:
   aboutme: '关于我'
 
 #friends:
-  
+
 
 aboutme: 卑微的人也不能停止改变世界的梦想，如果不能改变世界，那就改变卑微的自己吧！

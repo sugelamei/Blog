@@ -1,11 +1,11 @@
-```yaml
+---
 title: Spring Cloud-01 开始使用微服务
 date: 2019-11-13 10:29:54 
 tags: 
   - SpringCloud
-```
+---
 
-[TOC]
+
 
 ### 0.说在前面
 
@@ -22,6 +22,8 @@ tags:
 ### 1.Spring Cloud使用的前提
 
 ​     Spring Cloud 不一定适合所有人，想要玩转Spring Cloud 需要具备什么的技术能力，以及在实战中会使用哪些工具。
+
+<!-- more -->
 
 #### 1.1 技术储备
 
@@ -50,7 +52,7 @@ Spring Cloud 并不是面向零基础的开发人员，它有一定的学习曲�
 
 以一个电影售票系统为例，架构图如下所示：
 
-<img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191113214123622.png" style="zoom:80%;" />
+![](/image/SpringCloud/image-20191113214123622.png)
 
 围绕该场景，先来编写一个用户微服务，然后编写一个电影微服务。
 
@@ -63,19 +65,19 @@ Spring Cloud 并不是面向零基础的开发人员，它有一定的学习曲�
 - 使用IntelliJIDEA创建一个空的maven项目
 - 新建一个Moudule 选择Spring Initializr 如下图：
 
-<img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191113215322376.png" alt="image-20191113215322376" style="zoom:25%;" />
+![](/image/SpringCloud/image-20191113215322376.png)
 
 -  Next 输入微服务的名字以及相关的信息
 
-​                                <img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191113215820445.png" alt="image-20191113215820445" style="zoom: 25%;" />       
+  ![](/image/SpringCloud/image-20191113215820445.png)
 
 - Next 选择需要的模块，Web，Mysql，JDBC，Mybatis和SpringBoot 2.1.10
 
-<img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191114191207504.png" alt="image-20191118225743998" style="zoom:25%;" />
+![](/image/SpringCloud/image-20191114191207504.png)
 
 - Next 然后Finish
 
-<img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191113220404252.png" alt="image-20191113220404252" style="zoom:25%;" />
+![](/image/SpringCloud/image-20191113220404252.png)
 
   到此，项目创建就算成功了。
 
@@ -137,7 +139,7 @@ mybatis:
 
 - 选择Mysql，JDBC，Mybatis和SpringBoot 2.1.10；
 
-<img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191114193448063.png" alt="image-20191118230016612" style="zoom:25%;" />
+![](/image/SpringCloud/image-20191114193448063.png)
 
 - 加入 mybatis generator自动生成代码插件 pom
 
@@ -258,15 +260,15 @@ mybatis:
 
 -   在代码生成**前**目录结构如下图所示：
 
-    <img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191116213057227.png" alt="image-20191116213057227" style="zoom: 50%;" />
+    ![](/image/SpringCloud/image-20191116213057227.png)
 
 - 然后点击生成代码
 
-  <img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191116213243818.png" alt="image-20191116213243818" style="zoom:50%;" />
+  ![](/image/SpringCloud/image-20191116213243818.png)
 
 - 在代码生成**后**目录结构如下图所示：
 
-  <img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191116235956434.png" alt="image-20191116235956434" style="zoom:50%;" />
+  ![](/image/SpringCloud/image-20191116235956434.png)
 
 - 至此，代码自动生成完毕，复制生成的代码到你自己的项目目录下.
 
@@ -292,7 +294,6 @@ public interface UserService {
 ```
 
 ```java
-@
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
@@ -349,7 +350,7 @@ public class UserServiceImpl implements UserService {
 
   #### 3.7 最终项目的目录结构如下图所示：
 
-  <img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191116235837020.png" alt="image-20191116235837020" style="zoom:50%;" />
+  ![](/image/SpringCloud/image-20191116235837020.png)
 
 #### 3.8 启动并测试
 
@@ -373,7 +374,7 @@ public class MicroserviceSimpleProviderUserApplication {
 
 -  访问http://localhost:8080/user/1 获取结果
 
-  ![image-20191120220758616](G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191116235215043.png)
+  ![](/image/SpringCloud/image-20191116235215043.png)
 
 
 
@@ -430,7 +431,7 @@ server:
 
 - 最终项目的目录结构如下图所示：
 
-<img src="G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191117002302313.png" alt="image-20191117002302313" style="zoom:50%;" />
+![](/image/SpringCloud/image-20191117002302313.png)
 
 - 启动MicroserviceSimpleConsumerMovieApplication
 
@@ -442,7 +443,7 @@ server:
   
    获取结果（注意端口和请求路径不一样，服务提供者也需要在运行状态）
   
-  ![image-20191120220651049](G:\Blog\source\image\SpringCloud与Docker微服务实战\image-20191117002651887.png)
+  ![](/image/SpringCloud/image-20191117002651887.png)
 
 说明电影微服务可以正常使用RestTemplate调用用户微服务的API。
 
@@ -493,7 +494,7 @@ private String userServiceUrl;
 
 请大家持续关注公众号：Java橙序猿
 
- ![img](G:\Blog\source\image\common\Java橙序猿.png) 
+ ![](/image/common/Java橙序猿.png) 
 
 关注博客：
 
@@ -501,7 +502,7 @@ private String userServiceUrl;
  http://superdevops.cn
 ```
 
-### 参考资料：
+### 888.参考资料
 
 [《Spring Cloud 与Docker 微服务架构实战》](https://book.douban.com/subject/30278673/)
 
