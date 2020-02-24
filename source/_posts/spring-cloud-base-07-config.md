@@ -1273,7 +1273,7 @@ spring:
 
 各个微服务将请求发送到负载均衡器，负载均衡器将请求转发到其代理的其中一个`Config Server`节点。这样，就可以实现`Config Server`的高可用。
 
-##### 1.2.3.2　`Config Server`注册到Eureka Server上
+##### 12.3.2　`Config Server`注册到Eureka Server上
 
 这种情况下，`Config Server`的高可用相对简单，只需将多个`Config Server`节点注册到Eureka Server上，即可实现`Config Server`的高可用。架构如图所示：
 
