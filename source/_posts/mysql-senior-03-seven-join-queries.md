@@ -4,7 +4,6 @@ date: 2020-03-01  11:40:36
 tags: 
     - Mysql
     - CentOS
-typora-root-url: G:\Blog\source
 ---
 
 ### 0.说在前面
