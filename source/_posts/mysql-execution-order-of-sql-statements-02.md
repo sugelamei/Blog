@@ -33,6 +33,8 @@ order by
 limit <limit_number>
 ```
 
+<!--more-->
+
 ### 2.机读顺序
 
 #### 2.1文字表示
