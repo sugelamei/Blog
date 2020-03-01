@@ -177,7 +177,7 @@ select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id ;
 
 请大家持续关注公众号：Java橙序猿
 
- ![](image/common/superdevops.jpg) 
+ ![](/image/common/superdevops.jpg) 
 
 关注博客：
 
