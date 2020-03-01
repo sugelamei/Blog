@@ -1075,6 +1075,6 @@ eureka:
 https://github.com/superdevops-cn/spring-cloud-microservice
 ```
 
-### 888.参考资料：
+### 888.参考资料
 
 [《Spring Cloud 与Docker 微服务架构实战》](https://book.douban.com/subject/30278673/)
