@@ -1,18 +1,10 @@
 ---
 title: Mysql高级-03 七种join查询
-date: 2020-03-01  11:40:36
+date: 2020-02-29  11:40:36
 tags: 
     - Mysql
     - CentOS
 ---
-
-### 0.说在前面
-
-```
-- Mysql：8.0.19
-- 系统：Centos 7.6.1810
-- IDE的选择：选择一款强大的IDE往往能够事半功倍，笔者使用DataGrip；
-```
 
 ### 1.`Join`介绍
 

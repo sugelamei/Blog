@@ -158,7 +158,7 @@ SHOW INDEX FROM table_name\G
 
 请大家持续关注公众号：Java橙序猿
 
- ![](image/common/superdevops.jpg) 
+ ![](/image/common/superdevops.jpg) 
 
 关注博客：
 
