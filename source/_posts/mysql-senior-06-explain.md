@@ -55,6 +55,7 @@ explain使用：explain+sql语句，通过执行explain可以获得sql语句执�
 
 下面对explain的表头字段含义进行解释：
 
+```
 （1）select_type行指定所使用的SELECT查询类型，这里值为SIMPLE，表示简单的SELECT，不使用UNION或子查询。其他可能的取值有PRIMARY、UNION、SUBQUERY等。
 
 （2）table行指定数据库读取的数据表的名字，它们按被读取的先后顺序排列。
@@ -72,6 +73,9 @@ explain使用：explain+sql语句，通过执行explain可以获得sql语句执�
 （8）rows行是MySQL在执行这个查询时预计会从这个数据表里读出的数据行的个数。
 
 （9）Extra行提供了与关联操作有关的信息。
+```
+
+
 
 #### 3.4 各个字段解释
 
@@ -175,9 +179,7 @@ system>const>eq_ref>ref>fulltext>range>ref_or_null>index>ALL
 - fulltext:使用fulltext index
 - ref_or_null：类似于ref,会额外搜索包含NULL的行，常用于解析子查询
 - index_merge：使用了索引合并优化，在输出key列上包含有多个index.
-- range：只检索给定范围的行，使用一个索引来选择行。key列显示使用了哪个索引
-一般就是在你的where语句中出现了=, <>, >, >=, <, <=, IS NULL, <=>, BETWEEN, LIKE, or IN() 等的查询
-这种范围扫描索引扫描比全表扫描要好，因为他只需要开始索引的某一点，而结束语另一点，不用扫描全部索引。
+- range：只检索给定范围的行，使用一个索引来选择行。key列显示使用了哪个索引,一般就是在你的where语句中出现了=, <>, >, >=, <, <=, IS NULL, <=>, BETWEEN, LIKE, or IN() 等的查询.ß这种范围扫描索引扫描比全表扫描要好，因为他只需要开始索引的某一点，而结束语另一点，不用扫描全部索引。
 - index：扫描整个index tree，与all的区别就是all是全表扫描，index是full index 扫描
 - all：全表扫描，实际使用中，如果数据量比较大，应该避免进行全表扫描，因为这种连接是最慢的
   备注：一般来说，得保证查询只是达到range级别，最好达到ref
