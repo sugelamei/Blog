@@ -79,7 +79,18 @@ explain使用：explain+sql语句，通过执行explain可以获得sql语句执�
 
 #### 3.4 各个字段解释
 
-​     注意：笔者使用的测试数据库为mysql官方提供的employees数据库。
+​     注意：笔者使用的测试数据库为mysql官方提供的employees数据库。    
+
+```
+#数据库下载地址
+https://github.com/datacharmer/test_db
+#操作手册地址
+https://dev.mysql.com/doc/employee/en/employees-installation.html
+```
+
+整个Employees 数据库机构如下：
+
+![](/image/mysql/image-20200308152706619.png)
 
 ##### 3.4.1 id
 
