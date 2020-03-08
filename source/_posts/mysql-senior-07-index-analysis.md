@@ -27,6 +27,8 @@ insert into article values(null,1,1,3,3,'3','3');
 
 ```
 
+<!--more--->
+
 #### 1.2 使用explain分析
 
 ```sql
@@ -346,7 +348,7 @@ create index Y on book(card);
 create index Z on phone(card);
 ```
 
-### 3.5 再次使用explain分析
+#### 3.5 再次使用explain分析
 
 ![image-20200308221933561](/image/mysql/image-20200308221933561.png)
 
