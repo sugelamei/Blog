@@ -45,6 +45,8 @@ create index person_memo_index_memo
     on person (memo);
 ```
 
+<!--more-->
+
 ### 2.全值匹配我最爱
 
 #### 2.1 使用一个字段的索引
@@ -261,8 +263,6 @@ explain select  * from   person where memo =1111 ;
 
 
 ![image-20200311225737535](/image/mysql/image-20200311225737535.png)
-
-
 
 
 
