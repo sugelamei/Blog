@@ -216,7 +216,7 @@ select * from information_schema.triggers where trigger_name  like 'emp_logs_del
 
 ### 4.  删除触发器
 
-使用DROP TRIGGER语句可以删除MySQL中已经定义的触发器，删除触发器语句的基本语法格式如下：c
+使用DROP TRIGGER语句可以删除MySQL中已经定义的触发器，删除触发器语句的基本语法格式如下：
 
 ```mysql
 drop trigger [schema_name.]trigger_name
