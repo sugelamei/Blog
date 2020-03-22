@@ -1,5 +1,5 @@
 ---
-title: Mysql高级-08 索引优化
+title: Mysql 8 高级-08 索引优化
 date: 2020-03-10  20:14:56
 tags: 
     - Mysql
@@ -288,7 +288,3 @@ VAR引号不可丢，SQL高级也不难！
 ```
  http://superdevops.cn
 ```
-
-### 888.参考文档
-
-尚硅谷阳哥`mysql`高级视频

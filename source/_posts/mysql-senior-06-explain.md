@@ -1,5 +1,5 @@
 ---
-title: Mysql高级-06 性能优化
+title: Mysql 8 高级-06 性能优化
 date: 2020-03-03  20:14:56
 tags: 
     - Mysql

@@ -1,5 +1,5 @@
 ---
-title: Mysql高级-07 索引分析
+title: Mysql 8 高级-07 索引分析
 date: 2020-03-05  21:40:36
 tags: 
     - Mysql

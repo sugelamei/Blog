@@ -1,6 +1,6 @@
 ---
 
-title: Mysql高级-02 SQL语句的执行顺序
+title: Mysql 8 高级-02 SQL语句的执行顺序
 date: 2020-02-28  22:36:26
 tags: 
     - Mysql

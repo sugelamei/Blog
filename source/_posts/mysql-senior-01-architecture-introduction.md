@@ -1,5 +1,5 @@
 ---
-title: Mysql高级-01 架构介绍 
+title: Mysql 8 高级-01 架构介绍 
 date: 2020-02-25  17:55:26
 tags: 
     - Mysql
