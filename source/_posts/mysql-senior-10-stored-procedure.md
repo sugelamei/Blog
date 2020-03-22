@@ -33,7 +33,7 @@ end ;
 
 CREATE PROCEDURE为用来创建存储函数的关键字；sp_name为存储过程的名称；proc_parameter为指定存储过程的参数列表，列表形式如下：
 
-```sql
+```mysql
 [IN|OUT|INOUT] param_name type
 ```
 
@@ -115,14 +115,14 @@ delimiter ;
 
 存储过程是通过CALL语句进行调用的，语法如下：
 
-```sql
+```mysql
 call sp_name() ;	
 
 ```
 
 CALL语句调用一个先前用CREATE PROCEDURE创建的存储过程，其中sp_name为存储过程名称，parameter为存储过程的参数。
 
-```sql
+```mysql
 --调用pro_test1
 call pro_test1() ;	
 ```
@@ -182,7 +182,7 @@ show procedure status  like 'pro_%'\G
 
 ​     除了SHOW STATUS之外，MySQL还可以使用SHOW CREATE语句查看存储过程和函数的状态。
 
-```sql
+```mysql
 show create {procedure|function} sp_name
 ```
 
@@ -236,7 +236,7 @@ alter  {procedure|function}  sp_name
 
 删除存储过程和函数，可以使用DROP语句，其语法结构如下：
 
-```sql
+```mysql
 drop {procedure|function}  [if exists] sp_name ;
 ```
 
@@ -259,7 +259,7 @@ drop  function count_user;
 
   通过 DECLARE 可以定义一个局部变量，该变量的作用范围只能在 BEGIN…END 块中。
 
-```sql
+```mysql
 DECLARE var_name[,...] type [DEFAULT value]
 ```
 
@@ -279,7 +279,7 @@ delimiter ;
 
 直接赋值使用 SET，可以赋常量或者赋表达式，具体语法如下：
 
-```
+```mysql
   SET var_name = expr [, var_name = expr] ...
 ```
 
@@ -317,7 +317,7 @@ delimiter ;
 
 语法结构 : 
 
-```sql
+```mysql
 if search_condition then statement_list
 
 	[elseif search_condition then statement_list] ...
@@ -459,7 +459,7 @@ select @descrip;
 
 语法结构 : 
 
-```SQL
+```mysql
 方式一 : 
 
 CASE case_value
@@ -564,7 +564,7 @@ delimiter  ;
 
 语法结构 : 
 
-```SQL
+```mysql
 REPEAT
 
   statement_list
@@ -603,7 +603,7 @@ delimiter  ;
 
 LOOP 实现简单的循环，退出循环的条件需要使用其他的语句定义，通常可以使用 LEAVE 语句实现，具体语法如下：
 
-```sql
+```mysql
 [begin_label:] LOOP
 
   statement_list
@@ -647,25 +647,25 @@ delimiter ;
 
 声明光标：
 
-```sql
+```mysql
 DECLARE cursor_name CURSOR FOR select_statement ;
 ```
 
 OPEN 光标：
 
-```sql
+```mysql
 OPEN cursor_name ;
 ```
 
 FETCH 光标：
 
-```sql
+```mysql
 FETCH cursor_name INTO var_name [, var_name] ...
 ```
 
 CLOSE 光标：
 
-```sql
+```mysql
 CLOSE cursor_name ;
 ```
 
