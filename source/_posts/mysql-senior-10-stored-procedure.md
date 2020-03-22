@@ -117,13 +117,12 @@ delimiter ;
 
 ```mysql
 call sp_name() ;	
-
 ```
 
 CALL语句调用一个先前用CREATE PROCEDURE创建的存储过程，其中sp_name为存储过程名称，parameter为存储过程的参数。
 
 ```mysql
---调用pro_test1
+-- 调用pro_test1
 call pro_test1() ;	
 ```
 
@@ -163,7 +162,7 @@ select  count_user();
 
 SHOW STATUS语句可以查看存储过程和函数的状态，其基本语法结构如下：
 
-```sql
+```mysql
 -- 查询存储过程的状态信息
 show {procedure|function} status [like 'pattern'];
 ```
