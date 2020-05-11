@@ -96,9 +96,7 @@ service mysqld restart;
 4） 创建同步数据的账户，并且进行授权操作：
 
 ```sql
-set global validate_password.policy=0;
-set global validate_password.length=1;
-create user 'rep'@'192.168.10.79' identified with mysql_native_password by 'wxc@1234';
+create user 'rep'@'192.168.10.79' identified with mysql_native_password by 'Wxc@1234';
 grant replication slave on *.* to 'rep'@'192.168.10.79';
 flush privileges;
 ```
@@ -109,7 +107,7 @@ flush privileges;
 show master status;
 ```
 
-![image-20200421224317447](/image/mysql/image-20200421224317447.png) 
+![image-20200511222619855](/image/mysql/image-20200421224317447.png) 
 
 字段含义：
 
@@ -142,28 +140,26 @@ service mysqld restart;
 3） 执行如下指令 ：
 
 ```mysql
-change master to master_host= '192.168.10.63', master_user='rep', master_password='wxc@1234', master_log_file='mysqlbin.000003', master_log_pos=847;
+change master to master_host= '192.168.10.63', master_user='rep', master_password='Wxc@1234', master_log_file='mysqlbin.000005', master_log_pos=1038;
 ```
 
 指定当前从库对应的主库的IP地址，用户名，密码，从哪个日志文件开始的那个位置开始同步推送日志。
 
 4） 开启同步操作
 
-```
+```mysql
 start slave;
-
-show slave status;
+##查看状态
+show slave status \G
 ```
 
-![1554479387365](/H:/资料-MySQL高级教程/文档/assets/1554479387365.png) 
+![image-20200511222717312](/image/mysql/image-20200511222717312.png) 
 
 5） 停止同步操作
 
-```
+```mysql
 stop slave;
 ```
-
-
 
 #### 4.3 验证同步操作
 
@@ -172,7 +168,7 @@ stop slave;
 ```sql
 create database db01;
 
-user db01;
+use db01;
 
 create table user(
 	id int(11) not null auto_increment,
@@ -190,9 +186,29 @@ insert into user(id,name,sex) values(null,'Dawn','1');
 
 在从库中，可以查看到刚才创建的数据库：
 
-![1554544658640](/H:/资料-MySQL高级教程/文档/assets/1554544658640.png) 
+ ```mysql
+ show databases;
+ ```
+
+![image-20200511223006148](/image/mysql/image-20200511223006148.png)
 
 在该数据库中，查询user表中的数据：
 
-![1554544679538](/H:/资料-MySQL高级教程/文档/assets/1554544679538.png) 
+```mysql
+select * from  user;
+```
+
+![image-20200511223105481](/image/mysql/image-20200511223105481.png) 
+
+### 666. 彩蛋
+
+请大家持续关注公众号：Java橙序猿
+
+ ![](/image/common/superdevops.jpg) 
+
+关注博客：
+
+```
+ http://superdevops.cn
+```
 
