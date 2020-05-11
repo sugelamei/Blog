@@ -89,11 +89,9 @@ explain select  * from query where  t0 ='a0' and t1 ='b1'and t2 ='c2'and t3 >'d3
 
 结论：范围右边的索引列失效，但是范围本身是有效的。
 
-
-
 #### 3.03 排序案例分析(order by)
 
-##### 
+
 
 ```sql
 #按照索引顺序排序

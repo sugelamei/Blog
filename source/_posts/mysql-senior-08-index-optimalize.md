@@ -142,7 +142,7 @@ explain select * from person  where left(name,1) ='张';
 
 ![image-20200310231611526](/image/mysql/image-20200310231611526.png)
 
-### 6. 范围之后全失效
+#### 6. 范围之后全失效
 
 不能使用索引中范围条件右边的列，这样会使范围之后的索引全部失效。
 
@@ -190,7 +190,7 @@ explain select name from person  where name='张三' and age=35;
 
 mysql在使用不等于（！=或者<>）,is null,is not null,or 的时候无法使用索引会导致全表扫描;
 
-#### 9.1 情况一
+##### 9.1 情况一
 
 ```sql
 select  * from   person;
