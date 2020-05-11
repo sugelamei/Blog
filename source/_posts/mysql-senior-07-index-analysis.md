@@ -4,6 +4,7 @@ date: 2020-03-05  21:40:36
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.单表分析
@@ -39,7 +40,7 @@ where category_id = 1
 and comments > 1;
 ```
 
-![image-20200308204926030](/image/mysql/image-20200308164243654.png)
+![image-20200308204926030](/image/mysql/07/070001.png)
 
 分析：type=ALL，产生了全表扫描。
 
@@ -52,7 +53,7 @@ and comments > 1
 order by views desc limit 1;
 ```
 
-![image-20200308205252700](/image/mysql/image-20200308193754271.png)
+![image-20200308205252700](/image/mysql/07/070002.png)
 
 分析：type=ALL,产生了全表扫描, 并且出现了Using filesort,使用了外部的索引排序。
 
@@ -72,7 +73,7 @@ where category_id = 1
 and comments > 1;
 ```
 
-![image-20200308205751539](/image/mysql/image-20200308205751539.png)
+![image-20200308205751539](/image/mysql/07/070003.png)
 
 ```sql
 -- 查询category_id为1且comments 大于 1 的所有记录,显示id,author_id,views
@@ -83,7 +84,7 @@ and comments > 1
 order by views desc limit 1;
 ```
 
-![image-20200308205924276](/image/mysql/image-20200308205924276.png)
+![image-20200308205924276](/image/mysql/07/070004.png)
 
 分析：创建索引之后type=range, 但是Using filesort 依然存在.
 
@@ -117,7 +118,7 @@ where category_id = 1
 and comments > 1;
 ```
 
-![image-20200308211238886](/image/mysql/image-20200308211238886.png)
+![image-20200308211238886](/image/mysql/07/070005.png)
 
 ```sql
 -- 查询category_id为1且comments 大于 1 的所有记录,显示id,author_id,views
@@ -128,7 +129,7 @@ and comments > 1
 order by views desc limit 1;
 ```
 
-![image-20200308211546458](/image/mysql/image-20200308211546458.png)
+![image-20200308211546458](/image/mysql/07/070006.png)
 
 分析：type =ref，但是有出现了Backward index scan（反向扫描），说明创建索引的排序顺序不对，应该创建降序索引，默认为升序索引。
 
@@ -156,7 +157,7 @@ where category_id = 1
 and comments > 1;
 ```
 
-![image-20200308212723352](/image/mysql/image-20200308212723352.png)
+![image-20200308212723352](/image/mysql/07/070007.png)
 
 ```
 -- 查询category_id为1且comments 大于 1 的所有记录,显示id,author_id,views
@@ -167,7 +168,7 @@ and comments > 1
 order by views desc limit 1;
 ```
 
-![image-20200308212746451](/image/mysql/image-20200308212746451.png)
+![image-20200308212746451](/image/mysql/07/070008.png)
 
 最终终于优化好了。
 
@@ -216,7 +217,7 @@ insert into book(card) values(floor(1+rand()*20));
 explain select * from class left join book on class.card = book.card;
 ```
 
-![image-20200308213330294](/image/mysql/image-20200308213330294.png)
+![image-20200308213330294](/image/mysql/07/070009.png)
 
   分析： type =ALL， Extra 出现了Using join buffer (Block Nested Loop)；
 
@@ -232,7 +233,7 @@ create index X on book(card);
 explain select * from class left join book on class.card = book.card;
 ```
 
-![image-20200308214710794](/image/mysql/image-20200308214710794.png)
+![image-20200308214710794](/image/mysql/07/070010.png)
 
 分析：我们可以看到第二行的type变为了ref,rows也变小了,优化效果明显
 
@@ -242,7 +243,7 @@ explain select * from class left join book on class.card = book.card;
 explain select * from class right join book on class.card = book.card;
 ```
 
-![image-20200308215416653](/image/mysql/image-20200308215416653.png)
+![image-20200308215416653](/image/mysql/07/070011.png)
 
 #### 2.6 删除索引
 
@@ -262,7 +263,7 @@ create index Y on class(card);
 explain select * from class right join book on class.card = book.card;
 ```
 
-![image-20200308220023970](/image/mysql/image-20200308220023970.png)
+![image-20200308220023970](/image/mysql/07/070012.png)
 
 #### 2.9创建索引
 
@@ -276,7 +277,7 @@ create index X_X on book(card);
 explain select * from class left join book on class.card = book.card;
 ```
 
-![image-20200308220502310](/image/mysql/image-20200308220502310.png)
+![image-20200308220502310](/image/mysql/07/070013.png)
 
 #### 2.11 第三次使用explain分析RIGHT JOIN
 
@@ -284,7 +285,7 @@ explain select * from class left join book on class.card = book.card;
 explain select * from class right join book on class.card = book.card;
 ```
 
-![image-20200308220256898](/image/mysql/image-20200308220256898.png)
+![image-20200308220256898](/image/mysql/07/070014.png)
 
 
 
@@ -339,7 +340,7 @@ drop index X_X on book;
 explain select * from class left join book on class.card = book.card left join phone on book.card = phone.card;
 ```
 
-![image-20200308221753135](/image/mysql/image-20200308221753135.png)
+![image-20200308221753135](/image/mysql/07/070015.png)
 
 #### 3.4  建立索引
 
@@ -350,7 +351,7 @@ create index Z on phone(card);
 
 #### 3.5 再次使用explain分析
 
-![image-20200308221933561](/image/mysql/image-20200308221933561.png)
+![image-20200308221933561](/image/mysql/07/070016.png)
 
 > 分析：后2行的type都是ref且总rows数量大大降低了,效果不错,因此索引最好是设置在需要经常查询的字段中
 >

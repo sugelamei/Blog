@@ -21,7 +21,7 @@ MySQL支持一台主库同时向多台从库进行复制， 从库同时也可�
 
 MySQL 的主从复制原理如下。
 
-![1554423698190](/image/mysql/image-20200419232855771.png) 
+![1554423698190](/image/mysql/19/190001.png) 
 
 从上层来看，复制分成三步：
 
@@ -54,7 +54,7 @@ MySQL 复制的有点主要包含以下三个方面：
 find  / -name 'my.cnf'
 ```
 
-![image-20200421194803500](/image/mysql/image-20200421194803500.png)
+![image-20200421194803500](/image/mysql/19/190002.png)
 
 2)在master 的配置文件（/etc/my.cnf）中，配置如下内容：
 
@@ -107,7 +107,7 @@ flush privileges;
 show master status;
 ```
 
-![image-20200511222619855](/image/mysql/image-20200421224317447.png) 
+![image-20200511222619855](/image/mysql/19/190003.png) 
 
 字段含义：
 
@@ -153,7 +153,7 @@ start slave;
 show slave status \G
 ```
 
-![image-20200511222717312](/image/mysql/image-20200511222717312.png) 
+![image-20200511222717312](/image/mysql/19/190004.png) 
 
 5） 停止同步操作
 
@@ -190,7 +190,7 @@ insert into user(id,name,sex) values(null,'Dawn','1');
  show databases;
  ```
 
-![image-20200511223006148](/image/mysql/image-20200511223006148.png)
+![image-20200511223006148](/image/mysql/19/190005.png)
 
 在该数据库中，查询user表中的数据：
 
@@ -198,7 +198,7 @@ insert into user(id,name,sex) values(null,'Dawn','1');
 select * from  user;
 ```
 
-![image-20200511223105481](/image/mysql/image-20200511223105481.png) 
+![image-20200511223105481](/image/mysql/19/190006.png) 
 
 ### 666. 彩蛋
 

@@ -4,6 +4,7 @@ date: 2020-03-12  20:38:56
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.准备数据
@@ -49,7 +50,7 @@ create index query_t0_t1_t2_t3_index
 show  index  from  query;
 ```
 
-![image-20200312210938151](/image/mysql/image-20200312210938151.png)
+![](/image/mysql/09/090001.png)
 
 ### 3.案例分析
 
@@ -62,7 +63,7 @@ explain select  * from query where  t2 ='c2' and t3 ='d3'and t0 ='a0'and t1 ='b1
 explain select  * from query where  t3 ='d3' and t0 ='a0'and t1 ='b1'and t2 ='c2';
 ```
 
-![image-20200312211651011](/image/mysql/image-20200312211651011.png)
+![image-20200312211651011](/image/mysql/09/090002.png)
 
 分析：创建索引为t0,t1,t2,t3，上述四组explain执行结果都一样，type =ref，key_len=1212,ref=const,const,const,const.
 
@@ -81,7 +82,7 @@ explain select  * from query where  t0 ='a0' and t1 ='b1'and t2 ='c2';
 explain select  * from query where  t0 ='a0' and t1 ='b1'and t2 ='c2'and t3 >'d3';
 ```
 
-![image-20200312215718145](/image/mysql/image-20200312212251573.png)
+![image-20200312215718145](/image/mysql/09/090003.png)
 
 分析：上图1和2中，1的type =ref,2的为type=range，但是两者的key_len均为303，说明均用了t0索引；
 
@@ -105,7 +106,7 @@ explain select  * from query where  t0 >'a0' order by t0,t1,t2,t3;
 explain select  * from query where  t0 ='a0' order by t0,t1,t2,t3;
 ```
 
-![image-20200312222936617](/image/mysql/image-20200312222242932.png)
+![image-20200312222936617](/image/mysql/09/090004.png)
 
 
 
@@ -121,7 +122,7 @@ explain select  * from query where  t0 >'a0' order by t0,t1,t3,t2;
 explain select  * from query where  t0 ='a0' order by t0,t1,t3,t2;
 ```
 
-![image-20200312223343932](/image/mysql/image-20200312223343932.png)
+![image-20200312223343932](/image/mysql/09/090005.png)
 
 ```sql
 #按照索引排序顺序相反的顺序排序
@@ -135,7 +136,7 @@ explain select  * from query where  t0 >'a0' order by t3,t2,t1,t0;
 explain select  * from query where  t0 ='a0' order by t3,t2,t1,t0;
 ```
 
-![image-20200312224004156](/image/mysql/image-20200312224004156.png)
+![image-20200312224004156](/image/mysql/09/090006.png)
 
 ```sql
 #选择不同的字段排序方式
@@ -147,7 +148,7 @@ explain select  * from query where  t0 >'a0' order by t0 asc ,t1 desc ;
 explain select  * from query where  t0 >'a0' order by t0 desc ,t1 asc;
 ```
 
-![image-20200312224727140](/image/mysql/image-20200312224727140.png)
+![image-20200312224727140](/image/mysql/09/090007.png)
 
 分析：综上各个案例可知，当排序的字段未按照索引的建立顺序和索引的排序顺序时会出现Using filesort（文件内排序，会严重影响性能）。当排序字段的顺序与字段索引建立的的排序顺序(默认为ASC)，则会出现 Backward index scan（反向索引扫描）；
 
@@ -197,7 +198,7 @@ explain select  * from query where  t0 >'a0' order by t0 desc ,t1 asc;
    explain  select  t0,t1 from query  group by t1,t0;
 ```
 
-![image-20200315211556400](/image/mysql/image-20200315211556400.png)
+![image-20200315211556400](/image/mysql/09/090008.png)
 
 分析：当使用的分组条件的先后顺序和索引的先后顺序不一样以及未遵循索引的最佳左前缀法则时会出现Using temporary；在实际的生产中要避免这种情况的出现。
 

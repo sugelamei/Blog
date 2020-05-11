@@ -5,6 +5,7 @@ date: 2020-02-28  22:36:26
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.手写`SQL`
@@ -47,7 +48,7 @@ limit <limit_number>
 
 #### 2.2 图形表示
 
-![](/image/mysql/image-20200229224750440.png)
+![](/image/mysql/02/020001.png)
 
 
 

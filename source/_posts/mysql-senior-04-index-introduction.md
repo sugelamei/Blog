@@ -4,6 +4,7 @@ date: 2020-03-01  11:40:36
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.索引介绍

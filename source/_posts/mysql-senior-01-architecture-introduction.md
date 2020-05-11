@@ -4,13 +4,14 @@ date: 2020-02-25  17:55:26
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.`Mysql`逻辑架构介绍 
 
 ​     和其他数据库相比，mysql有点与众不同，它的架构可以在多种不同的场景中应用并发挥良好的作用，主要体现在储存引擎的架构上，插拔式的储存引擎将处理和其他的系统任务以及数据的存储提取相分离。这种架构可以根据业务的需要和实际需要选择合适的存储引擎。
 
-![](/image/mysql/image-20200229101759889.png)
+![](/image/mysql/mysql01/010001.png)
 
 从上图可知，MySQL的逻辑框架主要分为四层：
 
@@ -77,7 +78,7 @@ tags:
 show engines;
 ```
 
-![image-20200229111136954](/image/mysql/image-20200229111136954.png)   
+![image-20200229111136954](/image/mysql/mysql01/010002.png)   
 
 
 
@@ -87,11 +88,11 @@ show engines;
 show variables like '%storage_engine%';
 ```
 
-![image-20200229111338557](/image/mysql/image-20200229111338557.png)
+![image-20200229111338557](/image/mysql/mysql01/010003.png)
 
    3.MyISAM和InnoDB进行比较，主要区别如下表：
 
-![](/image/mysql/image-20200229111338558.png)
+![](/image/mysql/mysql01/010004.png)
 
 注意：MyISAM主要关注性能，其查询速度快。
 
@@ -133,7 +134,7 @@ show variables like '%你想要查询的参数%'；
 show variables like 'log_error';
 ```
 
-![image-20200229113303192](/image/mysql/image-20200229113303192.png)
+![image-20200229113303192](/image/mysql/mysql01/010005.png)
 
 ##### 3.2.2 慢查询日志
 
@@ -151,7 +152,7 @@ SET GLOBAL slow_query_log=ON;
 show variables like 'long_query_time';
 ```
 
-![image-20200229115503530](/image/mysql/image-20200229115503530.png)
+![image-20200229115503530](/image/mysql/mysql01/010006.png)
 
 ​    设置long_query_time这个阈值后，MySQL数据库会记录运行时间超过该值的所有SQL语句，但运行时间正好等于long_query_time的情况并不会被记录下。也就是说，在源代码中判断的是大于long_query_time，而非大于等于。
 
@@ -161,7 +162,7 @@ show variables like 'long_query_time';
 show variables like '%slow_query%';
 ```
 
-![image-20200229115717928](/image/mysql/image-20200229115626315.png)
+![image-20200229115717928](/image/mysql/mysql01/010007.png)
 
 ​     一个和慢查询日志有关的参数是log_queries_not_using_indexes，如果运行的SQL语句没有使用索引，则MySQL数据库同样会将这条SQL语句记录到慢查询日志文件;
 
@@ -177,7 +178,7 @@ SET GLOBAL log_queries_not_using_indexes=ON;
 show variables like  'log_queries_not_using_indexes';
 ```
 
-![image-20200229122505363](/image/mysql/image-20200229122505363.png)
+![image-20200229122505363](/image/mysql/mysql01/010008.png)
 
   参数log_throttle_queries_not_using_indexes，用来表示每分钟允许记录到slow log的且未使用索引的SQL语句次数。该值默认为0，表示没有限制。在生产环境下，若没有使用索引，此类SQL语句会频繁地被记录到slow log，从而导致slow log文件的大小不断增加;
 
@@ -185,7 +186,7 @@ show variables like  'log_queries_not_using_indexes';
 show variables like 'log_throttle_queries_not_using_indexes';
 ```
 
-![image-20200229122947288](/image/mysql/image-20200229122947288.png)
+![image-20200229122947288](/image/mysql/mysql01/010009.png)
 
 慢查询的日志记录放入一张表中，这使得用户的查询更加方便和直观。慢查询表在mysql架构下，名为slow_log，其表结构定义如下：
 
@@ -193,7 +194,7 @@ show variables like 'log_throttle_queries_not_using_indexes';
 show create table  mysql.slow_log;
 ```
 
-![image-20200229123515019](/image/mysql/image-20200229123515019.png)
+![image-20200229123515019](/image/mysql/mysql01/010010.png)
 
 参数log_output指定了慢查询输出的格式，默认为FILE:
 
@@ -201,7 +202,7 @@ show create table  mysql.slow_log;
 show variables like 'log_output';
 ```
 
-![image-20200229210640763](/image/mysql/image-20200229210640763.png)
+![image-20200229210640763](/image/mysql/mysql01/010011.png)
 
 可以将它设为TABLE,然后就可以查询mysql架构下的slow_log表.
 
@@ -231,7 +232,7 @@ SET GLOBAL log_output='TABLE';
 show variables like 'datadir';
 ```
 
-![image-20200229212642402](/image/mysql/image-20200229212642402.png)
+![image-20200229212642402](/image/mysql/mysql01/010012.png)
 
 ​         二进制日志文件在默认情况下并没有启动，需要手动指定参数来启动。可能有人会质疑，开启这个选项是否会对数据库整体性能有所影响。不错，开启这个选项的确会影响性能，但是性能的损失十分有限。根据MySQL官方手册中的测试表明，开启二进制日志会使性能下降1%。但考虑到可以使用复制（replication）和point-in-time的恢复，这些性能损失绝对是可以且应该被接受的。
 
@@ -239,29 +240,29 @@ show variables like 'datadir';
 
 以下配置文件的参数影响着二进制日志记录的信息和行为：
 
-1.max_binlog_size
+**1.max_binlog_size**
 
 ​        指定单个二进制日志文件的最大值,如果超过该值，则产生新的二进制日志文件，后缀名+1，并记录到.index文件;
 
-2.binlog_cache_size
+**2.binlog_cache_size**
 
 ​           当使用事务的表存储引擎（如InnoDB存储引擎）时，所有未提交（uncommitted）的二进制日志会被记录到一个缓存中去，等该事务提交（committed）时直接将缓冲中的二进制日志写入二进制日志文件，而该缓冲的大小由binlog_cache_size决定，默认大小为32K;binlog_cache_size是基于会话（session）的，也就是说，当一个线程开始一个事务时，MySQL会自动分配一个大小为binlog_cache_size的缓存，因此该值的设置需要相当小心，不能设置过大。当一个事务的记录大于设定的binlog_cache_size时，MySQL会把缓冲中的日志写入一个临时文件中，因此该值又不能设得太小。通过SHOWGLOBAL STATUS命令查看binlog_cache_use、binlog_cache_disk_use的状态，可以判断当前binlog_cache_size的设置是否合适。binlog_cache_use记录了使用缓冲写二进制日志的次数，binlog_cache_disk_use记录了使用临时文件写二进制日志的次数。
 
-3.sync_binlog
+**3.sync_binlog**
 
 ​      参数sync_binlog=[N]表示每写缓冲多少次就同步到磁盘。如果将N设为1，即sync_binlog=1表示采用同步写磁盘的方式来写二进制日志，这时写操作不使用操作系统的缓冲来写二进制日志。sync_binlog的默认值为0，如果使用InnoDB存储引擎进行复制，并且想得到最大的高可用性，建议将该值设为ON。不过该值为ON时，确实会对数据库的IO系统带来一定的影响。
 
-4.binlog-do-db/binlog-ignore-db
+**4.binlog-do-db/binlog-ignore-db**
 
    参数binlog-do-db和binlog-ignore-db表示需要写入或忽略写入哪些库的日志。默认为空，表示需要同步所有库的日志到二进制日志。
 
 
 
-5.log-slave-update
+**5.log-slave-update** 
 
 ​      如果当前数据库是复制中的slave角色，则它不会将从master取得并执行的二进制日志写入自己的二进制日志文件中去。如果需要写入，要设置log-slave-update。如果需要搭建master=>slave=>slave架构的复制，则必须设置该参数。
 
-6.binlog_format
+**6.binlog_format**
 
 ​     binlog_format参数，该参数可设的值有STATEMENT、ROW和MIXED。
 
@@ -281,7 +282,7 @@ show variables like 'datadir';
 show variables like 'socket';
 ```
 
-![image-20200229214012085](/image/mysql/image-20200229214012085.png)
+![image-20200229214012085](/image/mysql/mysql01/010013.png)
 
 #### 3.4 pid文件
 
@@ -291,7 +292,7 @@ MySQL实例的进程ID文件。当MySQL实例启动时，会将自己的进程ID
 show variables like 'pid_file';
 ```
 
-![image-20200229214130420](/C:/Users/love/AppData/Roaming/Typora/typora-user-images/image-20200229214130420.png)
+![image-20200229214130420](/image/mysql/mysql01/010014.png)
 
 
 

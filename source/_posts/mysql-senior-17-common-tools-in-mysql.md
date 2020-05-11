@@ -33,6 +33,8 @@ mysql [options] [database]
 	
 ```
 
+<!--more-->
+
 #### 1.2 执行选项
 
 ```mysql
@@ -47,7 +49,7 @@ mysql [options] [database]
 mysql -uroot -pWxc@1234 staff -e "select * from tb_book";
 ```
 
-![image-20200412010008943](/image/mysql/image-20200412010008943.png) 
+![image-20200412010008943](/image/mysql/17/170001.png) 
 
 
 
@@ -65,7 +67,7 @@ mysqladmin --help
 
  
 
-![image-20200412010216692](/image/mysql/image-20200412010216692.png) 
+![image-20200412010216692](/image/mysql/17/170002.png) 
 
 ```mysql
 ###示例 ：
@@ -200,11 +202,11 @@ mysqlshow -uroot -pWxc@1234 xxl_job superdevops --count
 
 ```
 
-![image-20200412011524301](/image/mysql/image-20200412011443572.png)
+![image-20200412011524301](/image/mysql/17/170003.png)
 
-![image-20200412011633635](/image/mysql/image-20200412011633635.png)
+![image-20200412011633635](/image/mysql/17/170004.png)
 
-![image-20200412011947313](/C:/Users/love/AppData/Roaming/Typora/typora-user-images/image-20200412011947313.png)
+![image-20200412011947313](/image/mysql/17/170005.png)
 
 ### 666. 彩蛋
 

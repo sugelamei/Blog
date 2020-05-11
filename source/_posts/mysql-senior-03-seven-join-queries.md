@@ -4,6 +4,7 @@ date: 2020-02-29  11:40:36
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.`Join`介绍
@@ -61,13 +62,13 @@ DROP TABLE IF EXISTS `tb_dept`;
 
 INNER JOIN：取A和B共有的数据，也就是交集。
 
-![img](/image/mysql/image-20200229224750441.png)
+![img](/image/mysql/03/030001.png)
 
 ```sql
 select  * from tb_emp  a inner  join  tb_dept b on  a.deptid =b.id;
 ```
 
-![image-20200301180022967](/image/mysql/image-20200301180022967.png)
+![image-20200301180022967](/image/mysql/03/030002.png)
 
 注意：可以看出outman和经理2项，因为这两项和其他的没有交集。
 
@@ -81,13 +82,13 @@ LEFT JOIN 会读取左边数据表的全部数据，即便右边表无对应数�
 
 
 
-![img](/image/mysql/image-20200301180022968.png)
+![img](/image/mysql/03/030003.png)
 
 ```
 select  * from tb_emp  a left join tb_dept b on  a.deptid =b.id;
 ```
 
-![image-20200301181012415](/image/mysql/image-20200301181012415.png)
+![image-20200301181012415](/image/mysql/03/030004.png)
 
 注意：你会发现是table1和table2的交集+table1的独有。
 
@@ -99,31 +100,31 @@ LEFT JOIN 会读取右边数据表的全部数据，即便左边表无对应数�
 
 
 
-![img](/image/mysql/image-20200301181012416.png)
+![img](/image/mysql/03/030005.png)
 
 ```
 select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id;
 ```
 
-![image-20200301181507798](/image/mysql/image-20200301181507798.png)
+![image-20200301181507798](/image/mysql/03/030006.png)
 
 注意：table2的独有+你会发现是table1和table2的交集。
 
 ### 6. A独有
 
-![](/image/mysql/image-20200301181507799.png)
+![](/image/mysql/03/030007.png)
 
 ```
 select  * from tb_emp  a left join tb_dept b on  a.deptid =b.id where b.id is  null;
 ```
 
-![image-20200301185312596](/image/mysql/image-20200301185312596.png)
+![image-20200301185312596](/image/mysql/03/030008.png)
 
 注：参照left join，A独有只是将AB交集部分去掉。
 
 ### 7. B独有
 
-![](/image/mysql/image-20200301185312597.png)
+![](/image/mysql/03/030009.png)
 
 
 
@@ -131,7 +132,7 @@ select  * from tb_emp  a left join tb_dept b on  a.deptid =b.id where b.id is  n
 select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id where  a.id is  null;
 ```
 
-![image-20200301185603794](/image/mysql/image-20200301185603794.png)
+![image-20200301185603794](/image/mysql/03/030010.png)
 
 注：参照right join，B独有只是将AB交集部分去掉。
 
@@ -139,7 +140,7 @@ select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id where  a.id is 
 
 A、B独有并集，相当于A、B全有去掉AB的共有（交集）。
 
-![](/image/mysql/image-20200301185603795.png)
+![](/image/mysql/03/030011.png)
 
 ```
 select  * from tb_emp  a left join tb_dept b on  a.deptid =b.id where b.id is  null
@@ -147,7 +148,7 @@ union
 select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id where  a.id is  null;
 ```
 
-![image-20200301185910508](/image/mysql/image-20200301185910508.png)
+![image-20200301185910508](/image/mysql/03/030012.png)
 
 
 
@@ -155,7 +156,7 @@ select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id where  a.id is 
 
 由于mysql中不支持full outer join，所以这里通过union进行转换。AB并集：AB交集+A独有+B独有。
 
-![](/image/mysql/image-20200301185910509.png)
+![](/image/mysql/03/030013.png)
 
 ```
 select  * from tb_emp  a left join tb_dept b on  a.deptid =b.id
@@ -163,7 +164,7 @@ union
 select  * from tb_emp  a right join tb_dept b on  a.deptid =b.id ;
 ```
 
-![image-20200301190441310](/image/mysql/image-20200301190441310.png)
+![image-20200301190441310](/image/mysql/03/030014.png)
 
 ### 666.彩蛋
 

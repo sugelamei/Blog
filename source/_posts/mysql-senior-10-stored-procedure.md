@@ -4,6 +4,7 @@ date: 2020-03-15  21:24:56
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1. 存储过程和函数概述
@@ -128,7 +129,7 @@ call pro_test1() ;
 
 
 
-![](/image/mysql/image-20200322110532888.png)
+![](/image/mysql/10/100001.png)
 
 #### 3.2 调用存储函数
 
@@ -152,7 +153,7 @@ set global   log_bin_trust_function_creators=1;
 select  count_user();
 ```
 
-![image-20200322173236296](/image/mysql/image-20200322173236296.png)
+![image-20200322173236296](/image/mysql/10/100002.png)
 
 ### 4. 查看存储过程和函数
 
@@ -173,7 +174,7 @@ show {procedure|function} status [like 'pattern'];
 show procedure status  like 'pro_%'\G
 ```
 
-![image-20200322165724145](/image/mysql/image-20200322165724145.png)
+![image-20200322165724145](/image/mysql/10/100003.png)
 
 "show procedure status  like 'pro_%'\G”语句获取数据库中所有名称以字母‘pro_’开头的存储过程的信息。通过上面的语句可以看到：这个存储函数所在的数据库为staaff、存储函数的名称为pro_test1等一些相关信息。
 
@@ -191,7 +192,7 @@ show create {procedure|function} sp_name
 show create function staff.count_user\G
 ```
 
-![image-20200322173549905](/image/mysql/image-20200322170203698.png)
+![](/image/mysql/10/100004.png)
 
 执行上面的语句可以得到存储函数的名称为count_user，sql_mode为sql的模式，Create Function为存储函数的具体定义语句，还有数据库设置的一些信息。
 
@@ -213,7 +214,7 @@ select * from  information_schema.Routines
 where  routine_name='pro_test1'\G
 ```
 
-![image-20200322170552335](/image/mysql/image-20200322170552335.png)
+![image-20200322170552335](/image/mysql/10/100005.png)
 
 ​       在information_schema数据库下的Routines表中，存储所有存储过程和函数的定义。使用SELECT语句查询Routines表中的存储过程和函数的定义时，一定要使用ROUTINE_NAME字段指定存储过程或函数的名称。否则，将查询出所有的存储过程或函数的定义。如果有存储过程和存储函数名称相同，就需要同时指定ROUTINE_TYPE字段表明查询的是哪种类型的存储程序。
 
@@ -360,7 +361,7 @@ delimiter ;
 
 调用结果为 : 
 
- ![image-20200322180358688](/image/mysql/image-20200322180358688.png)
+ ![image-20200322180358688](/image/mysql/10/100006.png)
 
 
 
@@ -411,7 +412,7 @@ delimiter ;
 call pro_if_in(159);
 ```
 
-![image-20200322181006721](/image/mysql/image-20200322181006721.png)
+![image-20200322181006721](/image/mysql/10/100007.png)
 
 **OUT-输出**
 
@@ -719,7 +720,7 @@ end //
 
 调用后结果如下：
 
-![image-20200322193425687](/image/mysql/image-20200322193425687.png)
+![image-20200322193425687](/image/mysql/10/100008.png)
 
 注意：这个语句在客户端运行会报错。
 

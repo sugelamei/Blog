@@ -31,7 +31,7 @@ typora-root-url: ..
 
 2） 写锁（排它锁）：当前操作没有完成之前，它会阻断其他写锁和读锁。
 
-
+<!--more-->
 
 ### 3. Mysql 中的锁
 
@@ -118,7 +118,7 @@ lock table tb_book read;
 select * from tb_book;
 ```
 
-![image-20200411222318543](/image/mysql/image-20200411222231051.png)
+![image-20200411222318543](/image/mysql/15/150001.png)
 
 可以正常执行 ， 查询出数据。
 
@@ -130,7 +130,7 @@ select * from tb_book;
 select * from tb_book;
 ```
 
-![image-20200411222358379](/image/mysql/image-20200411222358379.png) 
+![image-20200411222358379](/image/mysql/15/150002.png) 
 
 可以正常执行 ， 查询出数据。
 
@@ -142,7 +142,7 @@ select * from tb_book;
 select name from tb_user;
 ```
 
-![image-20200411222730281](/image/mysql/image-20200411222730281.png) 
+![image-20200411222730281](/image/mysql/15/150003.png) 
 
 直接报错，原因如下：当前持有其他表的读锁，
 
@@ -154,7 +154,7 @@ select name from tb_user;
 select name from tb_user;
 ```
 
-![image-20200411222852721](/image/mysql/image-20200411222852721.png) 
+![image-20200411222852721](/image/mysql/15/150004.png) 
 
 可以正常查询出未锁定的表；
 
@@ -168,7 +168,7 @@ select name from tb_user;
 insert into tb_book values(null,'Mysql高级','2088-01-01','1');
 ```
 
-![image-20200411223207334](/image/mysql/image-20200411223207334.png) 
+![image-20200411223207334](/image/mysql/15/150005.png) 
 
 执行插入， 直接报错 ， 由于当前tb_book 获得的是 读锁， 不能执行更新操作。
 
@@ -180,15 +180,15 @@ insert into tb_book values(null,'Mysql高级','2088-01-01','1');
 insert into tb_book values(null,'Mysql高级','2088-01-01','1');
 ```
 
-![image-20200411223233074](/image/mysql/image-20200411223233074.png) 
+![image-20200411223233074](/image/mysql/15/150006.png) 
 
 无法插入，等待中.
 
 当在客户端一中释放锁指令 unlock tables  后 ， 客户端二中的 inesrt 语句 ， 立即执行 ；
 
-![image-20200411223529834](/image/mysql/image-20200411223529834.png)
+![image-20200411223529834](/image/mysql/15/150007.png)
 
-![image-20200411231919593](/image/mysql/image-20200411223542732.png)
+![image-20200411231919593](/image/mysql/15/150008.png)
 
 ##### 3.1.3 写锁案例
 
@@ -206,7 +206,7 @@ lock table tb_book write ;
 select * from tb_book ;
 ```
 
-![image-20200411232034357](/image/mysql/image-20200411232034357.png) 
+![image-20200411232034357](/image/mysql/15/150009.png) 
 
 查询操作执行成功；
 
@@ -216,7 +216,7 @@ select * from tb_book ;
 update tb_book set name = 'java编程思想（第二版）' where id = 1;
 ```
 
-![image-20200411232128659](/image/mysql/image-20200411232128659.png) 
+![image-20200411232128659](/image/mysql/15/150010.png) 
 
 更新操作执行成功 ；
 
@@ -230,11 +230,11 @@ update tb_book set name = 'java编程思想（第二版）' where id = 1;
 select * from tb_book ;
 ```
 
-![image-20200411232159676](/image/mysql/image-20200411232159676.png)
+![image-20200411232159676](/image/mysql/15/150011.png)
 
 处于等待状态，当在客户端一中释放锁指令 unlock tables  后 ， 客户端二中的 select 语句 ， 立即执行 ；
 
-![image-20200411232306301](/image/mysql/image-20200411232306301.png) 
+![image-20200411232306301](/image/mysql/15/150012.png) 
 
 
 
@@ -242,7 +242,7 @@ select * from tb_book ;
 
 锁模式的相互兼容性如表中所示：
 
-![](/image/mysql/1553905621992.png)
+![](/image/mysql/15/150013.png)
 
 由上表可见： 
 
@@ -372,13 +372,13 @@ Name_locked：表名称是否被锁定。名称锁定用于取消表或对表进
 show open tables from  mysql;
 ```
 
-![image-20200411233236218](/image/mysql/image-20200411233236218.png)
+![image-20200411233236218](/image/mysql/15/150014.png)
 
 ```mysql
 show status like 'Table_locks%';
 ```
 
-![image-20200411233310267](/image/mysql/image-20200411233310267.png)
+![image-20200411233310267](/image/mysql/15/150015.png)
 
 Table_locks_immediate ： 指的是能够立即获得表级锁的次数，每立即获取锁，值加1。
 
@@ -448,7 +448,7 @@ show variables like 'tx_isolation';
 show variables like 'transaction_isolation';
 ```
 
-![image-20200411234512580](/image/mysql/image-20200411234512580.png)
+![image-20200411234512580](/image/mysql/15/150016.png)
 
   
 
@@ -504,13 +504,13 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| set autocommit=0;    ![image-20200411235055611](/image/mysql/image-20200411235055611.png)  关闭自动提交功能 | set autocommit=0;    ![image-20200411235055611](/image/mysql/image-20200411235055611.png)  关闭自动提交功能 |
-| select * from   test_innodb_lock;![image-20200411235552637](/image/mysql/image-20200411235552637.png)可以正常的查询出全部的数据 | select * from   test_innodb_lock;![image-20200411235552637](/image/mysql/image-20200411235552637.png)可以正常的查询出全部的数据 |
-| select * from   test_innodb_lock where id =3;![image-20200411235733431](/image/mysql/image-20200411235733431.png)查询id 为3的数据 | select * from   test_innodb_lock where id =3;![image-20200411235733431](/image/mysql/image-20200411235733431.png)查询id 为3的数据 |
-| update  test_innodb_lock set  name ='superdevops.cn' where id =3;![image-20200412000017544](/image/mysql/image-20200412000017544.png) 更新id为3的数据，但是不提交； | update  test_innodb_lock set  name ='superdevops.cn' where id =3;![image-20200412000112797](/image/mysql/image-20200412000112797.png) 更新id为3 的数据， 处于等待状态 |
-| commit；![image-20200412000248591](/image/mysql/image-20200412000248591.png) 通过commit， 提交事务 | ![image-20200412000323244](/image/mysql/image-20200412000323244.png) 解除阻塞，更新正常进行 |
+| set autocommit=0;    ![image-20200411235055611](/image/mysql/15/150017.png)  关闭自动提交功能 | set autocommit=0;    ![image-20200411235055611](/image/mysql/15/150018.png)  关闭自动提交功能 |
+| select * from   test_innodb_lock;![image-20200411235552637](/image/mysql/15/150019.png)可以正常的查询出全部的数据 | select * from   test_innodb_lock;![image-20200411235552637](/image/mysql/15/150020.png)可以正常的查询出全部的数据 |
+| select * from   test_innodb_lock where id =3;![image-20200411235733431](/image/mysql/15/150023.png)查询id 为3的数据 | select * from   test_innodb_lock where id =3;![image-20200411235733431](/image/mysql/15/150024.png)查询id 为3的数据 |
+| update  test_innodb_lock set  name ='superdevops.cn' where id =3;![image-20200412000017544](/image/mysql/15/150025.png) 更新id为3的数据，但是不提交； | update  test_innodb_lock set  name ='superdevops.cn' where id =3;![image-20200412000112797](/image/mysql/15/150026.png) 更新id为3 的数据， 处于等待状态 |
+| commit；![image-20200412000248591](/image/mysql/15/150027.png) 通过commit， 提交事务 | ![image-20200412000323244](/image/mysql/15/150028.png) 解除阻塞，更新正常进行 |
 | 以上， 操作的都是同一行的数据，接下来，演示不同行的数据 ：   |                                                              |
-| update  test_innodb_lock set  name ='super' where id =3;![image-20200412000450828](/image/mysql/image-20200412000450828.png)更新id为3数据，正常的获取到行锁 ， 执行更新 ； | update  test_innodb_lock set  name = 'devops' where id =5; ![image-20200412000717747](/image/mysql/image-20200412000717747.png)由于与Session-1 操作不是同一行，获取当前行锁，执行更新； |
+| update  test_innodb_lock set  name ='super' where id =3;![image-20200412000450828](/image/mysql/15/150029.png)更新id为3数据，正常的获取到行锁 ， 执行更新 ； | update  test_innodb_lock set  name = 'devops' where id =5; ![image-20200412000717747](/image/mysql/15/150030.png)由于与Session-1 操作不是同一行，获取当前行锁，执行更新； |
 
 
 
@@ -524,14 +524,14 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 show  index  from test_innodb_lock\G
 ```
 
-![image-20200412000840445](/image/mysql/image-20200412000840445.png) 
+![image-20200412000840445](/image/mysql/15/150031.png) 
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| set autocommit=0;    ![image-20200411235055611](/image/mysql/image-20200411235055611.png)  关闭自动提交功能 | set autocommit=0;    ![image-20200411235055611](/image/mysql/image-20200411235055611.png)  关闭自动提交功能 |
-| update test_innodb_lock set sex='2' where name like '%100%';![image-20200412003004573](/image/mysql/image-20200412003004573.png)执行更新语句成功 | update test_innodb_lock set sex='2' where id =5;![image-20200412003048258](/image/mysql/image-20200412001426216.png)执行更新语句， 但处于阻塞状态 |
-| commit；![image-20200412001527279](/image/mysql/image-20200412001527279.png)提交事务 | ![image-20200412003216436](/image/mysql/image-20200412001635659.png)解除阻塞，执行更新成功 |
-|                                                              | commit；![image-20200412001527279](/image/mysql/image-20200412001527279.png)提交事务 |
+| set autocommit=0;    ![image-20200411235055611](/image/mysql/15/150032.png)  关闭自动提交功能 | set autocommit=0;    ![image-20200411235055611](/image/mysql/15/150033.png)  关闭自动提交功能 |
+| update test_innodb_lock set sex='2' where name like '%100%';![image-20200412003004573](/image/mysql/15/150034.png)执行更新语句成功 | update test_innodb_lock set sex='2' where id =5;![image-20200412003048258](/image/mysql/15/150035.png)执行更新语句， 但处于阻塞状态 |
+| commit；![image-20200412001527279](/image/mysql/15/150036.png)提交事务 | ![image-20200412003216436](/image/mysql/15/150037.png)解除阻塞，执行更新成功 |
+|                                                              | commit；![image-20200412001527279](/image/mysql/15/150038.png)提交事务 |
 
 由于 执行更新时 ， 使用 like '%100%',索引失效，最终行锁变为表锁 ；
 
@@ -543,12 +543,12 @@ show  index  from test_innodb_lock\G
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| set autocommit=0;    ![image-20200411235055611](/image/mysql/image-20200411235055611.png)  关闭自动提交功能 | set autocommit=0;    ![image-20200411235055611](/image/mysql/image-20200411235055611.png)  关闭自动提交功能 |
-| update test_innodb_lock set name='8888' where id<4;![image-20200412003522990](/image/mysql/image-20200412003522990.png)根据id范围更新数据 |                                                              |
-|                                                              | insert into  test_innodb_lock (id, name, sex) VALUES (2, 'wxc', '1');![image-20200412003808599](/image/mysql/image-20200412003808599.png)插入id为2的记录， 出于阻塞状态 |
-| commit;![image-20200412003856540](/image/mysql/image-20200412003856540.png)提交事务 ； |                                                              |
-|                                                              | 解除阻塞 ， 执行插入操作 ：![image-20200412003837089](/image/mysql/image-20200412003837089.png) |
-|                                                              | commit;![image-20200412003856540](/image/mysql/image-20200412003856540.png)提交事务 ； |
+| set autocommit=0;    ![image-20200411235055611](/image/mysql/15/150039.png)  关闭自动提交功能 | set autocommit=0;    ![image-20200411235055611](/image/mysql/15/150040.png)  关闭自动提交功能 |
+| update test_innodb_lock set name='8888' where id<4;![image-20200412003522990](/image/mysql/15/150041.png)根据id范围更新数据 |                                                              |
+|                                                              | insert into  test_innodb_lock (id, name, sex) VALUES (2, 'wxc', '1');![image-20200412003808599](/image/mysql/15/150042.png)插入id为2的记录， 出于阻塞状态 |
+| commit;![image-20200412003856540](/image/mysql/15/150043.png)提交事务 ； |                                                              |
+|                                                              | 解除阻塞 ， 执行插入操作 ：![image-20200412003837089](/image/mysql/15/150044.png) |
+|                                                              | commit;![image-20200412003856540](/image/mysql/15/150045.png)提交事务 ； |
 
 
 
@@ -558,7 +558,7 @@ show  index  from test_innodb_lock\G
 show  status like 'innodb_row_lock%';
 ```
 
-![image-20200412004032054](/image/mysql/image-20200412004032054.png)
+![image-20200412004032054](/image/mysql/15/150046.png)
 
 ```
 Innodb_row_lock_current_waits: 当前正在等待锁定的数量

@@ -1,5 +1,5 @@
 ---
-title: Mysql 8 高级-14 mysql生产环境优化
+\title: Mysql 8 高级-14 mysql生产环境优化
 date: 2020-03-21 21:36:26
 tags: 
     - Mysql
@@ -15,7 +15,7 @@ typora-root-url: ..
 
 对于访问数据库来说，建立连接的代价是比较昂贵的，因为我们频繁的创建关闭连接，是比较耗费资源的，我们有必要建立 数据库连接池，以提高访问的性能。
 
-
+<!--more-->
 
 #### 1.2 减少对MySQL的访问
 
@@ -37,7 +37,7 @@ typora-root-url: ..
 
 通过MySQL的主从复制，实现读写分离，使增删改操作走主节点，查询操作走从节点，从而可以降低单台服务器的读写压力。
 
-![](/image/mysql/image-20200401224757235.png)
+![](/image/mysql/14/140001.png)
 
 ##### 1.3.2 采用分布式数据库架构
 
@@ -53,7 +53,7 @@ typora-root-url: ..
 
 #### 2.2 操作流程
 
-![](/image/mysql/image-20200401224757236.png)
+![](/image/mysql/14/140002.png)
 
 1. 客户端发送一条查询给服务器；
 2. 服务器先会检查查询缓存，如果命中了缓存，则立即返回存储在缓存中的结果。否则进入下一阶段；
@@ -200,7 +200,7 @@ key_buffer_size决定MyISAM索引块缓存区的大小，直接影响到MyISAM�
 SHOW VARIABLES LIKE 'key_buffer_size';
 ```
 
-![image-20200411220430002](/image/mysql/image-20200411220430002.png)
+![image-20200411220430002](/image/mysql/14/140003.png)
 
 在/usr/my.cnf 中做如下配置：
 
@@ -218,7 +218,7 @@ key_buffer_size=512M
 SHOW VARIABLES LIKE 'read_buffer_size';
 ```
 
-![image-20200411220755457](/image/mysql/image-20200411220755457.png)
+![image-20200411220755457](/image/mysql/14/140004.png)
 
 ##### read_rnd_buffer_size
 
@@ -232,7 +232,7 @@ SHOW VARIABLES LIKE 'read_rnd_buffer_size';
 
 
 
-![image-20200411220808154](/image/mysql/image-20200411220808154.png)
+![image-20200411220808154](/image/mysql/14/140005.png)
 
 #### 3.3 InnoDB 内存优化
 
@@ -252,7 +252,7 @@ innodb_buffer_pool_size=512M
 SHOW VARIABLES LIKE 'innodb_buffer_pool_size';
 ```
 
-![image-20200411221023889](/image/mysql/image-20200411221023889.png)
+![image-20200411221023889](/image/mysql/14/140006.png)
 
 ##### innodb_log_buffer_size
 
@@ -270,7 +270,7 @@ SHOW VARIABLES LIKE 'innodb_log_buffer_size';
 
 
 
-![image-20200411221034994](/image/mysql/image-20200411221034994.png)
+![image-20200411221034994](/image/mysql/14/140007.png)
 
 ### 4. Mysql并发参数调整
 
@@ -288,7 +288,7 @@ Mysql 最大可支持的连接数，取决于很多因素，包括给定操作�
 SHOW VARIABLES LIKE 'max_connections';
 ```
 
-![image-20200411221117933](/image/mysql/image-20200411221117933.png)
+![image-20200411221117933](/image/mysql/14/140008.png)
 
 
 
@@ -304,7 +304,7 @@ back_log 参数控制MySQL监听TCP端口时设置的积压请求栈大小。如
 SHOW VARIABLES LIKE 'max_connections';
 ```
 
-![image-20200411221254528](/image/mysql/image-20200411221254528.png)
+![image-20200411221254528](/image/mysql/14/140009.png)
 
 #### 4.3 table_open_cache
 
@@ -318,7 +318,7 @@ SHOW VARIABLES LIKE 'max_connections';
 SHOW VARIABLES LIKE 'table_open_cache';
 ```
 
-![image-20200411221152353](/image/mysql/image-20200411221152353.png)
+![image-20200411221152353](/image/mysql/14/140010.png)
 
 #### 4.4 thread_cache_size
 
@@ -330,7 +330,7 @@ SHOW VARIABLES LIKE 'table_open_cache';
 SHOW VARIABLES LIKE 'thread_cache_size';
 ```
 
-![image-20200411221240814](/image/mysql/image-20200411221240814.png)
+![image-20200411221240814](/image/mysql/14/140011.png)
 
 #### 4.5 innodb_lock_wait_timeout
 
@@ -342,7 +342,7 @@ SHOW VARIABLES LIKE 'thread_cache_size';
 SHOW VARIABLES LIKE 'innodb_lock_wait_timeout';
 ```
 
-![image-20200411221318802](/image/mysql/image-20200411221318802.png)
+![image-20200411221318802](/image/mysql/14/140012.png)
 
 ### 666. 彩蛋
 

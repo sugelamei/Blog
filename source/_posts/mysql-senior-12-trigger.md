@@ -4,6 +4,7 @@ date: 2020-03-19 20:36:26
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1. 触发器介绍
@@ -106,7 +107,7 @@ select * from emp_logs;
 select * from emp;
 ```
 
-![image-20200322210338349](/image/mysql/image-20200322210338349.png)
+![image-20200322210338349](/image/mysql/12/120001.png)
 
 创建 update 型触发器，完成更新数据时的日志记录 : 
 
@@ -140,7 +141,7 @@ select * from emp_logs;
 select * from emp;
 ```
 
-![image-20200322211000648](/image/mysql/image-20200322211000648.png)
+![image-20200322211000648](/image/mysql/12/120002.png)
 
 创建delete 行的触发器 , 完成删除数据时的日志记录 : 
 
@@ -172,7 +173,7 @@ select * from emp_logs;
 select * from emp;
 ```
 
-![image-20200322211442287](/image/mysql/image-20200322211442287.png)
+![image-20200322211442287](/image/mysql/12/120003.png)
 
 
 
@@ -194,7 +195,7 @@ show triggers\G
 
 
 
-![image-20200322211730913](/image/mysql/image-20200322211730913.png)
+![image-20200322211730913](/image/mysql/12/120004.png)
 
 
 
@@ -210,7 +211,7 @@ select * from information_schema.triggers where condition;
 select * from information_schema.triggers where trigger_name  like 'emp_logs_delete%' \G
 ```
 
-![image-20200322214800960](/image/mysql/image-20200322214800960.png)
+![image-20200322214800960](/image/mysql/12/120005.png)
 
 ​      从上面的执行结果可以得知：TRIGGER_SCHEMA表示触发器所在的数据库；TRIGGER_NAME后面是触发器的名称；EVENT_OBJECT_TABLE表示在哪个数据表上触发；ACTION_STATEMENT表示触发器触发的时候执行的具体操作；ACTION_ORIENTATION是ROW，表示在每条记录上都触发；ACTION_TIMING表示触发的时刻是AFTER；剩下的是和系统相关的信息。
 

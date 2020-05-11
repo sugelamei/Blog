@@ -15,13 +15,15 @@ typora-root-url: ..
 
 ​       该日志是默认开启的 ， 默认存放目录为 mysql 的数据目录（var/lib/mysql）, 默认的日志文件名为hostname.err（hostname是主机名）。
 
+<!--more-->
+
 查看日志位置指令 ： 
 
 ```mysql
 show variables like 'log_error%';
 ```
 
-![image-20200419220620677](/image/mysql/image-20200419220620677.png)
+![image-20200419220620677](/image/mysql/18/180001.png)
 
 
 
@@ -99,7 +101,7 @@ mysqlbinlog log-file;
 show variables like 'binlog_format'
 ```
 
-![image-20200419222433511](/image/mysql/image-20200419222433511.png)
+![image-20200419222433511](/image/mysql/18/180002.png)
 
 执行插入语句 ：
 
@@ -113,7 +115,7 @@ insert into tb_book values(null,'Lucene','2088-05-01','0');
 show binary logs;
 ```
 
-![image-20200419223139492](/image/mysql/image-20200419223139492.png)
+![image-20200419223139492](/image/mysql/18/180003.png)
 
 查找日志所在位置：
 
@@ -121,7 +123,7 @@ show binary logs;
  find / -name 'mysqlbin.*'
 ```
 
-![image-20200419224405527](/image/mysql/image-20200419224405527.png)
+![image-20200419224405527](/image/mysql/18/180004.png)
 
 查看日志文件 ：
 
@@ -129,7 +131,7 @@ show binary logs;
 mysqlbinlog /var/lib/mysql/mysqlbin.000001;
 ```
 
-![image-20200419224504600](/image/mysql/image-20200419223636570.png)
+![image-20200419224504600](/image/mysql/18/180005.png)
 
 ##### 2.3.2 查看ROW格式日志 
 
@@ -157,7 +159,7 @@ show variables like 'binlog_format'
 
 
 
-![image-20200419224026345](/image/mysql/image-20200419224026345.png)
+![image-20200419224026345](/image/mysql/18/180006.png)
 
 插入数据：
 
@@ -172,7 +174,7 @@ insert into tb_book values(null,'SpringCloud实战','2088-05-05','0');
 show binary logs;
 ```
 
-![image-20200419224111885](/image/mysql/image-20200419224111885.png)
+![image-20200419224111885](/image/mysql/18/180007.png)
 
 查找日志所在位置：
 
@@ -180,7 +182,7 @@ show binary logs;
  find / -name 'mysqlbin.*'
 ```
 
-![image-20200419224405527](/image/mysql/image-20200419224405527.png)
+![image-20200419224405527](/image/mysql/18/180008.png)
 
 如果日志格式是 ROW , 直接查看数据 , 是查看不懂的 ; 可以在mysqlbinlog 后面加上参数 -vv
 
@@ -188,7 +190,7 @@ show binary logs;
 mysqlbinlog -vv /var/lib/mysql/mysqlbin.000002
 ```
 
-![image-20200419224720357](/image/mysql/image-20200419224720357.png)
+![image-20200419224720357](/image/mysql/18/180009.png)
 
 #### 2.4 日志删除
 
@@ -204,7 +206,7 @@ mysqlbinlog -vv /var/lib/mysql/mysqlbin.000002
  find / -name 'mysqlbin.*'
 ```
 
-![image-20200419230721346](/image/mysql/image-20200419230721346.png)
+![image-20200419230721346](/image/mysql/18/180010.png)
 
 执行删除日志指令： 
 
@@ -219,7 +221,7 @@ Reset Master
  find / -name 'mysqlbin.*'
 ```
 
-![image-20200419230921065](/image/mysql/image-20200419230921065.png)
+![image-20200419230921065](/image/mysql/18/180011.png)
 
 ##### 2.4.1 方式二
 
@@ -297,7 +299,7 @@ select * from tb_book where id < 8;
 find / -name  'mysql_query*'
 ```
 
-![image-20200419231829586](/image/mysql/image-20200419231829586.png)
+![image-20200419231829586](/image/mysql/18/180012.png)
 
 执行完毕之后， 再次来查询日志文件 ： 
 
@@ -305,7 +307,7 @@ find / -name  'mysql_query*'
 cat  /var/lib/mysql/mysql_query.log
 ```
 
-![image-20200419231914887](/image/mysql/image-20200419231914887.png)
+![image-20200419231914887](/image/mysql/18/180013.png)
 
 ### 4. 慢查询日志
 
@@ -337,7 +339,7 @@ long_query_time=10
 show variables like 'long_query_time';
 ```
 
-![image-20200419232039135](/image/mysql/image-20200419232039135.png)
+![image-20200419232039135](/image/mysql/18/180014.png)
 
 ##### 4.2.2 执行查询操作
 
@@ -345,7 +347,7 @@ show variables like 'long_query_time';
 select * from tb_book;
 ```
 
-![image-20200419232531237](/image/mysql/image-20200419232531237.png)
+![image-20200419232531237](/image/mysql/18/180015.png)
 
 由于该语句执行时间很短，为0s ， 所以不会记录在慢查询日志中。
 
@@ -357,7 +359,7 @@ select * from tb_book;
 show variables like 'slow_%';
 ```
 
-![image-20200419232855770](/image/mysql/image-20200419232855770.png)
+![image-20200419232855770](/image/mysql/18/180016.png)
 
 直接通过cat 指令查询该日志文件 ： 
 

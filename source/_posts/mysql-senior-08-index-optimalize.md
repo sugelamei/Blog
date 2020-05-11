@@ -4,6 +4,7 @@ date: 2020-03-10  20:14:56
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1.数据准备
@@ -55,7 +56,7 @@ create index person_memo_index_memo
 explain select * from person  where name='张三';
 ```
 
-![image-20200310223728684](/image/mysql/image-20200310223728684.png)
+![image-20200310223728684](/image/mysql/08/080001.png)
 
 
 
@@ -65,7 +66,7 @@ explain select * from person  where name='张三';
 explain select * from person  where name='张三' and age=35;
 ```
 
-![image-20200310223956838](/image/mysql/image-20200310223956838.png)
+![image-20200310223956838](/image/mysql/08/080002.png)
 
 #### 3.使用三个字段的索引
 
@@ -75,7 +76,7 @@ explain select * from person  where name='张三'and email='13888133333@qq.com' 
 explain select * from person  where  age=35 and name='张三'and email='13888133333@qq.com';
 ```
 
-![image-20200310224239746](/image/mysql/image-20200310224239746.png)
+![image-20200310224239746](/image/mysql/08/080003.png)
 
 注意：虽然有些语句没有按照索引的建立顺序编写查询条件，但是mysql优化器会去优化这个语句。
 
@@ -93,7 +94,7 @@ explain select * from person  where name='张三' and age=35;
 explain select * from person  where name='张三' and age=35 and email='13888133333@qq.com';
 ```
 
-![image-20200310225553994](/image/mysql/image-20200310225553994.png)
+![image-20200310225553994](/image/mysql/08/080004.png)
 
  
 
@@ -108,7 +109,7 @@ explain select * from person  where  email='13888133333@qq.com' and age=35 ;
 
 ```
 
-![image-20200310225937363](/image/mysql/image-20200310225937363.png)
+![image-20200310225937363](/image/mysql/08/080005.png)
 
 注意：此时不会使用索引，type =ALL，为全表扫描。
 
@@ -120,7 +121,7 @@ explain select * from person  where name='张三' and  email='13888133333@qq.com
 explain select * from person  where name='张三' and age=35;
 ```
 
-![image-20200310230527686](/image/mysql/image-20200310230527686.png)
+![image-20200310230527686](/image/mysql/08/080006.png)
 
 分析：你会发现第一条语句和第二条语句都只用了name字段做索引，为什么这么说呢？
 
@@ -140,7 +141,7 @@ explain select * from person  where name='张三' and age=35;
 explain select * from person  where left(name,1) ='张';
 ```
 
-![image-20200310231611526](/image/mysql/image-20200310231611526.png)
+![image-20200310231611526](/image/mysql/08/080007.png)
 
 #### 6. 范围之后全失效
 
@@ -153,7 +154,7 @@ explain select * from person  where name='张三' and age=35 and email='13888133
 explain select * from person  where name='张三' and age>34 and email='13888133333@qq.com';
 ```
 
-![image-20200310232210678](/image/mysql/image-20200310232210678.png)
+![image-20200310232210678](/image/mysql/08/080008.png)
 
 
 
@@ -168,7 +169,7 @@ explain select * from person  where name like '%张三%';
 explain select * from person  where name like '%张三';
 ```
 
-![image-20200310232929922](/image/mysql/image-20200310232929922.png)
+![image-20200310232929922](/image/mysql/08/080009.png)
 
 #### 8.覆盖索引不写星
 
@@ -184,7 +185,7 @@ explain select * from person  where name='张三' and age=35;
 explain select name from person  where name='张三' and age=35;
 ```
 
-![image-20200310234248964](/image/mysql/image-20200310234248964.png)
+![image-20200310234248964](/image/mysql/08/080010.png)
 
 #### 9.不等空值还有or（分情况讨论）
 
@@ -196,7 +197,7 @@ mysql在使用不等于（！=或者<>）,is null,is not null,or 的时候无法
 select  * from   person;
 ```
 
-![image-20200311223821049](/image/mysql/image-20200311223821049.png)
+![image-20200311223821049](/image/mysql/08/080011.png)
 
 ```sql
 explain select name from person  where name='张三' ;
@@ -206,7 +207,7 @@ explain select  * from   person where memo is not null ;
 explain select  * from   person where memo is  null ;
 ```
 
-![image-20200311223509761](/image/mysql/image-20200311223509761.png)
+![image-20200311223509761](/image/mysql/08/080012.png)
 
 ##### 9.2 情况二
 
@@ -218,7 +219,7 @@ update person set  memo =null where  memo ='1111';
 select  * from   person;
 ```
 
-![image-20200311224239354](/image/mysql/image-20200311224239354.png)
+![image-20200311224239354](/image/mysql/08/080013.png)
 
 再次执行以下语句，与上面执行结果做对比：
 
@@ -230,7 +231,7 @@ explain select  * from   person where memo is not null ;
 explain select  * from   person where memo is  null ;
 ```
 
-![image-20200311224433429](/image/mysql/image-20200311224433429.png)
+![image-20200311224433429](/image/mysql/08/080014.png)
 
 通过上述测试可知：
 
@@ -253,7 +254,7 @@ update person set  memo ='1111' where  memo  is null;
 select  * from   person;
 ```
 
-![image-20200311225611738](/image/mysql/image-20200311225611738.png)
+![image-20200311225611738](/image/mysql/08/080015.png)
 
 ```sql
 explain select  * from   person where memo ='1111' ;
@@ -262,7 +263,7 @@ explain select  * from   person where memo =1111 ;
 
 
 
-![image-20200311225737535](/image/mysql/image-20200311225737535.png)
+![image-20200311225737535](/image/mysql/08/080016.png)
 
 
 

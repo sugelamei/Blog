@@ -23,13 +23,13 @@ typora-root-url: ..
 show status like 'Com_______';
 ```
 
-![image-20200401221310219](/image/mysql/image-20200401221310219.png)
+![image-20200401221310219](/image/mysql/13/130001.png)
 
 ```mysql
 show status like 'Innodb_rows_%';
 ```
 
-![image-20200401221356215](/image/mysql/image-20200401221356215.png)
+![image-20200401221356215](/image/mysql/13/130002.png)
 
 Com_xxx 表示每个 xxx 语句执行的次数，我们通常比较关心的是以下几个统计参数。
 
@@ -64,7 +64,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 show processlist;
 ```
 
-![image-20200401221544947](/image/mysql/image-20200401221544947.png)
+![image-20200401221544947](/image/mysql/13/130003.png)
 
 ```shell
 1） id列，用户登录mysql时，系统分配的"connection_id"，可以使用函数connection_id()查看
@@ -94,7 +94,7 @@ Mysql从5.0.37版本开始增加了对 show profiles 和 show profile 语句的�
 select @@have_profiling;
 ```
 
-![image-20200401223601256](/image/mysql/image-20200401223601256.png)
+![image-20200401223601256](/image/mysql/13/130004.png)
 
 默认profiling是关闭的，可以通过set语句在Session级别开启profiling：
 
@@ -102,7 +102,7 @@ select @@have_profiling;
 select @@profiling;
 ```
 
-![image-20200401223748850](/image/mysql/image-20200401223748850.png)
+![image-20200401223748850](/image/mysql/13/130005.png)
 
 ```mysql
 set profiling=1; //开启profiling 开关；
@@ -133,7 +133,7 @@ select sleep(10);
 show profiles;
 ```
 
-![image-20200401224314989](/image/mysql/image-20200401224314989.png)
+![image-20200401224314989](/image/mysql/13/130006.png)
 
 通过show  profile for  query  query_id 语句可以查看到该SQL执行过程中每个线程的状态和消耗的时间：
 
@@ -141,7 +141,7 @@ show profiles;
 show  profile for  query 5;
 ```
 
-![image-20200401224445502](/image/mysql/image-20200401224445502.png)
+![image-20200401224445502](/image/mysql/13/130007.png)
 
 在获取到最消耗时间的线程状态后，MySQL支持进一步选择all、cpu、block io 、context switch、page faults等明细类型类查看MySQL在使用什么资源上耗费了过高的时间。例如，选择查看CPU的耗费时间  ：
 
@@ -149,7 +149,7 @@ show  profile for  query 5;
 show  profile cpu for  query 5;
 ```
 
-![image-20200401224757234](/image/mysql/image-20200401224757234.png)
+![image-20200401224757234](/image/mysql/13/130008.png)
 
 | 字段       | 含义                           |
 | ---------- | ------------------------------ |

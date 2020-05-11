@@ -4,6 +4,7 @@ date: 2020-03-03  20:14:56
 tags: 
     - Mysql
     - CentOS
+typora-root-url: ..
 ---
 
 ### 1. `MySQL` Query Optimizer
@@ -51,7 +52,7 @@ tags:
 
 explain使用：explain+sql语句，通过执行explain可以获得sql语句执行的相关信息。
 
-![](/image/mysql/image-20200303231059955.png)
+![](/image/mysql/06/060001.png)
 
 下面对explain的表头字段含义进行解释：
 
@@ -90,7 +91,7 @@ https://dev.mysql.com/doc/employee/en/employees-installation.html
 
 整个Employees 数据库机构如下：
 
-![](/image/mysql/image-20200308152706619.png)
+![](/image/mysql/06/060002.png)
 
 ##### 3.4.1 id
 
@@ -109,7 +110,7 @@ where t1.emp_no = t2.emp_no
   and t1.last_name = 'Facello';
 ```
 
-![image-20200304234927744](/image/mysql/image-20200304234927744.png)
+![image-20200304234927744](/image/mysql/06/060003.png)
 
 ​    情况二：id不同，如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行
 
@@ -125,7 +126,7 @@ where t1.emp_no = (select emp_no
                    ));
 ```
 
-![image-20200305000232154](/image/mysql/image-20200305000232154.png)
+![image-20200305000232154](/image/mysql/06/060004.png)
 
 ​    情况三： id 相同不同，同时存在
 
@@ -142,7 +143,7 @@ from employees t1,
 where t1.emp_no = s1.emp_no;
 ```
 
-![image-20200306213513233](/image/mysql/image-20200306213513233.png)
+![image-20200306213513233](/image/mysql/06/060005.png)
 
 id相同的，可以认为是一组，从上往下顺序执行；在所有组中，id越大优先级越高，越先执行。
 

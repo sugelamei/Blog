@@ -4,7 +4,7 @@ date: 2020-03-17  20:40:56
 tags: 
     - Mysql
     - CentOS
-
+typora-root-url: ..
 ---
 
 ### 1.  视图概述
@@ -96,7 +96,7 @@ emp(id,name,age,salary) values
 select  * from  emp;
 ```
 
-![image-20200322195425370](/image/mysql/image-20200322195425370.png)
+![image-20200322195425370](/image/mysql/11/110001.png)
 
 创建视图(不显示工资)：
 
@@ -112,7 +112,7 @@ select  name,age from  emp;
 select  * from  emp_view;
 ```
 
-![image-20200322195848549](/image/mysql/image-20200322195848549.png)
+![image-20200322195848549](/image/mysql/11/110002.png)
 
 
 
@@ -134,7 +134,7 @@ DESCRIBE 视图名；
 DESCRIBE emp_view;
 ```
 
-![image-20200322200055034](/image/mysql/image-20200322200055034.png)
+![image-20200322200055034](/image/mysql/11/110003.png)
 
 ​    结果显示出了视图的字段定义、字段的数据类型、是否为空、是否为主/外键、默认值和额外信息。DESCRIBE一般情况下都简写成DESC，输入这个命令的执行结果和输入DESCRIBE的执行结果是一样的。
 
@@ -152,7 +152,7 @@ show table status like '视图名';
 show table status like 'emp_view'\G
 ```
 
-![image-20200322200308713](/image/mysql/image-20200322200308713.png)
+![image-20200322200308713](/image/mysql/11/110004.png)
 
 #### 3.3  使用SHOW CREATE VIEW语句查看视图详细信息
 
@@ -166,7 +166,7 @@ show create view 视图名;
 show create view emp_view;
 ```
 
-![image-20200322200508791](/image/mysql/image-20200322200508791.png)
+![image-20200322200508791](/image/mysql/11/110005.png)
 
 执行结果显示视图的名称、创建视图的语句等信息。
 
@@ -184,7 +184,7 @@ select * from   information_schema.views  where  table_name ='视图名';
 select * from   information_schema.views  where  table_name ='emp_view'\G
 ```
 
-![image-20200322200945761](/image/mysql/image-20200322200945761.png)
+![image-20200322200945761](/image/mysql/11/110006.png)
 
 ### 4.  修改视图
 
@@ -217,7 +217,7 @@ select  name from  emp;
 desc emp_view;
 ```
 
-![image-20200322201502930](/image/mysql/image-20200322201502930.png)
+![image-20200322201502930](/image/mysql/11/110007.png)
 
 #### 4.2  使用ALTER语句修改视图
 
@@ -246,7 +246,7 @@ select  name,salary from  emp;
 desc emp_view;
 ```
 
-![image-20200322201700808](/image/mysql/image-20200322201700808.png)
+![image-20200322201700808](/image/mysql/11/110008.png)
 
 ### 5. 更新视图
 
@@ -267,7 +267,7 @@ select * from emp;
 select * from emp_view;
 ```
 
-![image-20200322202406530](/image/mysql/image-20200322202406530.png)
+![image-20200322202406530](/image/mysql/11/110009.png)
 
 对视图更新后，基本表的内容也更新了，同样当对基本表更新后，另外一个视图中的内容也会更新。
 
@@ -286,7 +286,7 @@ select * from emp;
 select * from emp_view;
 ```
 
-![image-20200322202839944](/image/mysql/image-20200322202839944.png)
+![image-20200322202839944](/image/mysql/11/110010.png)
 
 向表中插入一条记录，通过SELECT查看表和视图，可以看到其中的内容也跟着更新.
 
@@ -305,7 +305,7 @@ select * from emp;
 select * from emp_view;
 ```
 
-![image-20200322203301386](/image/mysql/image-20200322203301386.png)
+![image-20200322203301386](/image/mysql/11/110011.png)
 
 视图中的删除操作最终是通过删除基本表中相关的记录实现的，查看删除操作之后的表和视图，可以看到通过视图删除其所依赖的基本表中的数据。
 
@@ -344,7 +344,7 @@ drop view if exists emp_view;
 DESCRIBE emp_view;
 ```
 
-![image-20200322203800358](/image/mysql/image-20200322203800358.png)
+![image-20200322203800358](/image/mysql/11/110012.png)
 
 可以看到，emp_view视图已经不存在，删除成功。
 
