@@ -1,5 +1,5 @@
 ---
-\title: Mysql 8 高级-14 mysql生产环境优化
+title: Mysql 8 高级-14 mysql生产环境优化
 date: 2020-03-21 21:36:26
 tags: 
     - Mysql
